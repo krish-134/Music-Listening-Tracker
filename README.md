@@ -1,4 +1,4 @@
-# Music-Listening History Tracker (MLHT)
+# Music-Listening History Tracker
 
 ## Proposal
 This application will track the statistics for 
