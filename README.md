@@ -1,4 +1,4 @@
-# Music Listening History Tracker
+# Music-Listening History Tracker
 
 ## Proposal
 This application will track the statistics for 
@@ -12,7 +12,7 @@ with programming.
 
 *User Stories*
 - As a user, I want to be able to *add* an **artist/band**, the **amount of time**
-I listened to them, and the **songs** I listened to my listening history list
+I listened to them, and the **songs** I heard to my listening history list
 - As a user, I want to be able to *view* the list of **artists/bands** on my listening history
 - As a user, I want to be able to *view* the number of **hours/minutes** that I have spent
 listening to a given **artist/band** or **song** from my listening history
