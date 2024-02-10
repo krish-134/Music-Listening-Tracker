@@ -14,7 +14,7 @@ with programming.
 - As a user, I want to be able to *add* an **artist/band** and the corresponding **amount of time**
 I spent listening to them to my listening history list
 - As a user, I want to be able to **add** the **amount of time** I've spent listening
-to a given song and be able to mark a song as **favourite**
+to a given song
 - As a user, I want to be able to *view* the list of **artists/bands** on my listening history
 - As a user, I want to be able to *view* the number of **hours/minutes** that I have spent
 listening to a given **artist/band** or **song** from my listening history

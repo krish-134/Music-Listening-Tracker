@@ -1,7 +1,7 @@
 package model;
 
 
-// This class creates the information about an single musician/group
+// This class creates the information about a single musician/group
 import java.util.List;
 
 public class Musician implements MusicTracking {
@@ -29,33 +29,33 @@ public class Musician implements MusicTracking {
     // EFFECTS: returns true if the given song is in songsHeard
     public boolean isSongFound(String songTitle) {
         for (Song s: songsHeard) {
-            if (songTitle == s.getName()) {
+            if (songTitle.equals(s.getName())) {
                 return true;
             }
         }
         return false;
     }  // NOT SURE IF THIS METHOD IS NEEDED!!!!!!!!
 
-
-    // getters
-
-    // REQUIRES: Specified song should already exist in songTitle
+    // REQUIRES: Specified songTitle should already exist in songsHeard
     // EFFECTS: returns given song if found in songsHeard
-    public Song getSpecificSong(String songTitle) {
+    public Song findSong(String songTitle) {
         for (Song s: songsHeard) {
-            if (songTitle == s.getName()) {
+            if (songTitle.equals(s.getName())) {
                 return s;
             }
         }
         return null; //THROW EXCEPTION!???!?!?
     }
 
+    // getters
+
+
     // REQUIRES: songTitle should appear in song from songsHeard
     // EFFECTS: returns time listened to given song, otherwise 0 if
     //          song title does not appear in songsHeard
     public double getTimeListenedSong(String songTitle) {
-        Song song = getSpecificSong(songTitle);
-        if (getSpecificSong(songTitle) != null) {
+        Song song = findSong(songTitle);
+        if (findSong(songTitle) != null) {
             return song.getTotalTimeListened();
         }
         return 0; //THROW/CATCH EXCEPTION!????????
@@ -69,7 +69,7 @@ public class Musician implements MusicTracking {
         for (Song s: songsHeard) {
             sum += s.getTotalTimeListened();
         }
-        return sum;
+        return Math.round(sum * 1000.0) / 100.0;
     }
 
     // REQUIRES: songsHeard should be non-empty

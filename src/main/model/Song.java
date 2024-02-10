@@ -8,28 +8,20 @@ public class Song implements MusicTracking {
     private double songLength;
     private int timesPlayed;
 
-    private boolean isFav;
 
     // REQUIRES: songLength > 0 and timesPlayed > 0
     // EFFECTS: creates a song with a name, the length, the amount of times the song has been played,
     //          and whether the song is a favourite
-    public Song(String name, double songLength, int timesPlayed, Boolean isFav) {
+    public Song(String name, double songLength, int timesPlayed) {
         this.name = name;
         this.songLength = songLength;
         this.timesPlayed = timesPlayed;
-        this.isFav = isFav;
     }
 
     // MODIFIES: this
     // EFFECTS: adds amount of times the song has been played
     public void addTimesPlayed(int t) {
         timesPlayed += t;
-    }
-
-    // MODIFIES: this
-    // EFFECTS: changes the favourite status of the song
-    public void changeFav() {
-        isFav = !isFav;
     }
 
     // REQUIRES: songLength > 0 and timesPlayed > 0
@@ -40,16 +32,19 @@ public class Song implements MusicTracking {
         return songLength * timesPlayed;
     }
 
+    // simple getters
+
     @Override
     public String getName() {
         return name;
     }
 
-    public boolean getIsFav() {
-        return isFav;
+    public double getSongLength() {
+        return songLength;
     }
 
-
-
+    public int getTimesPlayed() {
+        return timesPlayed;
+    }
 }
 
