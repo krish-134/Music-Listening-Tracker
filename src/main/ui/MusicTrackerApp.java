@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Scanner;
 
 // This UI class performs all the print statements and considers branches for user's command
-
+// The structuring of this UI is based off of the TellerApp program from CPSC 210 practice problems
 public class MusicTrackerApp {
 
     private Scanner input;
