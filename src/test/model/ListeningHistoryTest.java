@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ListeningHistoryTest {
 
-    private ListeningHistory userLH;
+    private MusicLibrary userML;
     private List<Musician> musicians;
     private Musician kendrick;
     private List<Song> kenSongs;
@@ -40,28 +40,28 @@ public class ListeningHistoryTest {
         musicians = new ArrayList<>();
         musicians.add(kendrick);
         musicians.add(taylor);
-        userLH = new ListeningHistory("Miguel", musicians);
+        userML = new MusicLibrary("Miguel", musicians);
 
     }
 
     @Test
     void testConstructor() {
-        assertEquals("Miguel", userLH.getName());
-        assertEquals(musicians, userLH.getMusiciansHeard());
+        assertEquals("Miguel", userML.getName());
+        assertEquals(musicians, userML.getMusiciansHeard());
     }
 
     @Test
     void testAddMusician() {
-        assertEquals(2, userLH.getMusiciansHeard().size());
+        assertEquals(2, userML.getMusiciansHeard().size());
 
         List<Song> bSongs = new ArrayList<>();
         Song mr = new Song("My Romance", 7.12, 1);
         bSongs.add(mr);
         Musician bill = new Musician("Bill Evans", bSongs);
 
-        userLH.addMusician(bill);
-        assertEquals(3, userLH.getMusiciansHeard().size());
-        assertEquals(bill, userLH.getMusiciansHeard().get(2));
+        userML.addMusician(bill);
+        assertEquals(3, userML.getMusiciansHeard().size());
+        assertEquals(bill, userML.getMusiciansHeard().get(2));
 
         List<Song> tiSongs = new ArrayList<>();
         Song ae = new Song("Alter Ego", 4.49, 17);
@@ -70,9 +70,9 @@ public class ListeningHistoryTest {
         tiSongs.add(lih);
         Musician tameImpala = new Musician("Tame Impala", tiSongs);
 
-        userLH.addMusician(tameImpala);
-        assertEquals(4, userLH.getMusiciansHeard().size());
-        assertEquals(tameImpala, userLH.getMusiciansHeard().get(3));
+        userML.addMusician(tameImpala);
+        assertEquals(4, userML.getMusiciansHeard().size());
+        assertEquals(tameImpala, userML.getMusiciansHeard().get(3));
 
     }
 
@@ -80,89 +80,89 @@ public class ListeningHistoryTest {
 
     @Test
     void testGetMostHeardMusicianThenMoreHeardMusician() {
-        assertEquals(taylor, userLH.getMostHeardMusician());
+        assertEquals(taylor, userML.getMostHeardMusician());
 
         List<Song> bSongs = new ArrayList<>();
         Song mr = new Song("My Romance", 7.12, 29);
         bSongs.add(mr);
         Musician bill = new Musician("Bill Evans", bSongs);
-        userLH.addMusician(bill);
+        userML.addMusician(bill);
 
-        assertEquals(bill, userLH.getMostHeardMusician());
+        assertEquals(bill, userML.getMostHeardMusician());
     }
 
 
     @Test
     void testGetMostHeardMusicianThenMoreLessMusician() {
-        assertEquals(taylor, userLH.getMostHeardMusician());
+        assertEquals(taylor, userML.getMostHeardMusician());
 
         List<Song> bSongs = new ArrayList<>();
         Song mr = new Song("My Romance", 7.12, 1);
         bSongs.add(mr);
         Musician bill = new Musician("Bill Evans", bSongs);
-        userLH.addMusician(bill);
+        userML.addMusician(bill);
 
-        assertEquals(taylor, userLH.getMostHeardMusician());
+        assertEquals(taylor, userML.getMostHeardMusician());
     }
 
     @Test
     void testGetLeastHeardMusicianThenMoreHeardMusician() {
-        assertEquals(kendrick, userLH.getLeastHeardMusician());
+        assertEquals(kendrick, userML.getLeastHeardMusician());
 
         List<Song> bSongs = new ArrayList<>();
         Song mr = new Song("My Romance", 7.12, 29);
         bSongs.add(mr);
         Musician bill = new Musician("Bill Evans", bSongs);
-        userLH.addMusician(bill);
+        userML.addMusician(bill);
 
-        assertEquals(kendrick, userLH.getLeastHeardMusician());
+        assertEquals(kendrick, userML.getLeastHeardMusician());
     }
 
 
     @Test
     void testGetLeastHeardMusicianThenLessHeardMusician() {
-        assertEquals(kendrick, userLH.getLeastHeardMusician());
+        assertEquals(kendrick, userML.getLeastHeardMusician());
 
         List<Song> bSongs = new ArrayList<>();
         Song mr = new Song("My Romance", 7.12, 1);
         bSongs.add(mr);
         Musician bill = new Musician("Bill Evans", bSongs);
-        userLH.addMusician(bill);
+        userML.addMusician(bill);
 
-        assertEquals(bill, userLH.getLeastHeardMusician());
+        assertEquals(bill, userML.getLeastHeardMusician());
     }
 
     @Test   
     void testGetTotalTimeListened() {
-        assertEquals(115.10, userLH.getTotalTimeListened());
+        assertEquals(115.10, userML.getTotalTimeListened());
 
         List<Song> bSongs = new ArrayList<>();
         Song mr = new Song("My Romance", 7.12, 1);
         bSongs.add(mr);
         Musician bill = new Musician("Bill Evans", bSongs);
-        userLH.addMusician(bill);
+        userML.addMusician(bill);
 
-        assertEquals(122.22, userLH.getTotalTimeListened());
+        assertEquals(122.22, userML.getTotalTimeListened());
     }
 
     @Test
     void testFindMusician() {
-        assertEquals(kendrick, userLH.findMusician("Kendrick Lamar"));
-        assertEquals(taylor, userLH.findMusician("Taylor Swift"));
+        assertEquals(kendrick, userML.findMusician("Kendrick Lamar"));
+        assertEquals(taylor, userML.findMusician("Taylor Swift"));
     }
 
     @Test
     void testIsMusicianFound() {
-        assertTrue(userLH.isMusicianFound("Kendrick Lamar"));
-        assertTrue(userLH.isMusicianFound("Taylor Swift"));
-        assertFalse(userLH.isMusicianFound("Nirvana"));
+        assertTrue(userML.isMusicianFound("Kendrick Lamar"));
+        assertTrue(userML.isMusicianFound("Taylor Swift"));
+        assertFalse(userML.isMusicianFound("Nirvana"));
     }
 
 
     @Test
     void testGetTimeListenedFromMusician() {
-        assertEquals(6.27 * 6, userLH.getTimeListenedFromMusician("Kendrick Lamar"));
-        assertEquals(77.48, userLH.getTimeListenedFromMusician("Taylor Swift"));
+        assertEquals(6.27 * 6, userML.getTimeListenedFromMusician("Kendrick Lamar"));
+        assertEquals(77.48, userML.getTimeListenedFromMusician("Taylor Swift"));
     }
 
 }

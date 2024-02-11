@@ -3,13 +3,13 @@ package model;
 import java.util.List;
 
 // This class contains the list of musicians that user has listened to
-public class ListeningHistory implements MusicTracking {
+public class MusicLibrary implements MusicTracking {
 
     private String user;
     private List<Musician> musiciansHeard;
 
     // EFFECTS: creates list of musicians
-    public ListeningHistory(String name, List<Musician> musiciansHeard) {
+    public MusicLibrary(String name, List<Musician> musiciansHeard) {
         user = name;
         this.musiciansHeard = musiciansHeard;
     }

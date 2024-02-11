@@ -15,7 +15,6 @@ public class Musician implements MusicTracking {
     public Musician(String name, List<Song> songsHeard) {
         this.name = name;
         this.songsHeard = songsHeard;
-
     }
 
     // REQUIRES: songsHeard should be non-empty and song should
@@ -48,7 +47,6 @@ public class Musician implements MusicTracking {
     }
 
     // getters
-
 
     // REQUIRES: songTitle should appear in song from songsHeard
     // EFFECTS: returns time listened to given song, otherwise 0 if
