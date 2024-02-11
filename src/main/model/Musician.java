@@ -29,12 +29,12 @@ public class Musician implements MusicTracking {
     // EFFECTS: returns true if the given song is in songsHeard
     public boolean isSongFound(String songTitle) {
         for (Song s: songsHeard) {
-            if (songTitle.equals(s.getName())) {
+            if (songTitle.equalsIgnoreCase(s.getName())) {
                 return true;
             }
         }
         return false;
-    }  // NOT SURE IF THIS METHOD IS NEEDED!!!!!!!!
+    }
 
     // REQUIRES: Specified songTitle should already exist in songsHeard
     // EFFECTS: returns given song if found in songsHeard
@@ -69,7 +69,7 @@ public class Musician implements MusicTracking {
         for (Song s: songsHeard) {
             sum += s.getTotalTimeListened();
         }
-        return Math.round(sum * 1000.0) / 100.0;
+        return Math.round(sum * 100.0) / 100.0;
     }
 
     // REQUIRES: songsHeard should be non-empty

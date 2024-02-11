@@ -21,6 +21,28 @@ public class ListeningHistory implements MusicTracking {
         musiciansHeard.add(m);
     }
 
+    // EFFECTS: returns true if the given musician is in musiciansHeard
+    public boolean isMusicianFound(String name) {
+        for (Musician m: musiciansHeard) {
+            if (name.equalsIgnoreCase(m.getName())) {
+                return true;
+            }
+        }
+        return false;
+    }  // NOT SURE IF THIS METHOD IS NEEDED!!!!!!!!
+
+
+    // REQUIRES: m should already exist in musiciansHeard
+    // EFFECTS: returns given musician if found in musiciansHeard
+    public Musician findMusician(String name) {
+        for (Musician m: musiciansHeard) {
+            if (name.equals(m.getName())) {
+                return m;
+            }
+        }
+        return null; //THROW EXCEPTION!???!?!?
+    }
+
     // REQUIRES: musiciansHeard should be non-empty
     // EFFECTS: returns the least played musician, assuming that no two musicians
     //          have been listened to by the exact same amount of time
@@ -54,21 +76,11 @@ public class ListeningHistory implements MusicTracking {
         for (Musician m: musiciansHeard) {
             sum += m.getTotalTimeListened();
         }
-        return Math.round(sum * 100) / 100;
+        return Math.round(sum * 100.0) / 100.0;
     }
 
-    // REQUIRES: m should already exist in musiciansHeard
-    // EFFECTS: returns given musician if found in musiciansHeard
-    public Musician findMusician(String name) {
-        for (Musician m: musiciansHeard) {
-            if (name.equals(m.getName())) {
-                return m;
-            }
-        }
-        return null; //THROW EXCEPTION!???!?!?
-    }
 
-    // REQUIRES: name should be associated with existing musican in musicansHeard
+    // REQUIRES: name should be associated with existing musician in musiciansHeard
     // EFFECTS: returns total time listened to given musician
     public double getTimeListenedFromMusician(String name) {
         Musician m = findMusician(name);

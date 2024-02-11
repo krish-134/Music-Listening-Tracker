@@ -2,8 +2,10 @@ package model;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ListeningHistoryTest {
@@ -11,10 +13,10 @@ public class ListeningHistoryTest {
     private ListeningHistory userLH;
     private List<Musician> musicians;
     private Musician kendrick;
-    private List<Song> kSongs;
+    private List<Song> kenSongs;
     private Song mt;
     private Musician taylor;
-    private List<Song> tSongs;
+    private List<Song> taySongs;
     private Song ah;
     private Song bs;
     private Song ls;
@@ -22,20 +24,20 @@ public class ListeningHistoryTest {
     @BeforeEach
     void setup() {
         mt = new Song("Money Trees", 6.27, 6);
-        kSongs = new ArrayList<>();
-        kSongs.add(mt);
-        kendrick = new Musician("Kendrick Lamar", kSongs);
+        kenSongs = new ArrayList<>();
+        kenSongs.add(mt);
+        kendrick = new Musician("Kendrick Lamar", kenSongs);
 
         ah = new Song("Anti-Hero", 3.23, 1);
         bs = new Song("Blank Space", 3.51, 12);
         ls = new Song("Love Story", 3.57, 9);
-        tSongs = new ArrayList<Song>();
-        tSongs.add(ah);
-        tSongs.add(bs);
-        tSongs.add(ls);
-        taylor = new Musician("Taylor Swift", tSongs);
+        taySongs = new ArrayList<>();
+        taySongs.add(ah);
+        taySongs.add(bs);
+        taySongs.add(ls);
+        taylor = new Musician("Taylor Swift", taySongs);
 
-        musicians = new ArrayList<Musician>();
+        musicians = new ArrayList<>();
         musicians.add(kendrick);
         musicians.add(taylor);
         userLH = new ListeningHistory("Miguel", musicians);
@@ -73,6 +75,8 @@ public class ListeningHistoryTest {
         assertEquals(tameImpala, userLH.getMusiciansHeard().get(3));
 
     }
+
+
 
     @Test
     void testGetMostHeardMusicianThenMoreHeardMusician() {
@@ -145,6 +149,13 @@ public class ListeningHistoryTest {
     void testFindMusician() {
         assertEquals(kendrick, userLH.findMusician("Kendrick Lamar"));
         assertEquals(taylor, userLH.findMusician("Taylor Swift"));
+    }
+
+    @Test
+    void testIsMusicianFound() {
+        assertTrue(userLH.isMusicianFound("Kendrick Lamar"));
+        assertTrue(userLH.isMusicianFound("Taylor Swift"));
+        assertFalse(userLH.isMusicianFound("Nirvana"));
     }
 
 
