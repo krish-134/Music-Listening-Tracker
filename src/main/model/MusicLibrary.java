@@ -29,18 +29,19 @@ public class MusicLibrary implements MusicTracking {
             }
         }
         return false;
-    }  // NOT SURE IF THIS METHOD IS NEEDED!!!!!!!!
+    }
 
 
     // REQUIRES: m should already exist in musiciansHeard
-    // EFFECTS: returns given musician if found in musiciansHeard
+    // EFFECTS: returns given musician if found in musiciansHeard, otherwise
+    //          returns null if musician is not found
     public Musician findMusician(String name) {
         for (Musician m: musiciansHeard) {
             if (name.equals(m.getName())) {
                 return m;
             }
         }
-        return null; //THROW EXCEPTION!???!?!?
+        return null;
     }
 
     // REQUIRES: musiciansHeard should be non-empty
@@ -80,14 +81,14 @@ public class MusicLibrary implements MusicTracking {
     }
 
 
-    // REQUIRES: name should be associated with existing musician in musiciansHeard
-    // EFFECTS: returns total time listened to given musician
-    public double getTimeListenedFromMusician(String name) {
+    // EFFECTS: returns total time listened to given musician, returns 0 if the musician
+    //          is not found
+    public double getTimeListenedMusician(String name) {
         Musician m = findMusician(name);
         if (findMusician(name) != null) {
             return m.getTotalTimeListened();
         }
-        return 0; //THROW/CATCH EXCEPTION!????????
+        return 0;
     }
 
 

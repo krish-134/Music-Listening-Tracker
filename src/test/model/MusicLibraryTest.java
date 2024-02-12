@@ -162,9 +162,9 @@ public class MusicLibraryTest {
 
     @Test
     void testGetTimeListenedFromMusician() {
-        assertEquals(6.27 * 6, userML.getTimeListenedFromMusician("Kendrick Lamar"));
-        assertEquals(77.48, userML.getTimeListenedFromMusician("Taylor Swift"));
-        assertEquals(0, userML.getTimeListenedFromMusician("Kenny Beats"));
+        assertEquals(6.27 * 6, userML.getTimeListenedMusician("Kendrick Lamar"));
+        assertEquals(77.48, userML.getTimeListenedMusician("Taylor Swift"));
+        assertEquals(0, userML.getTimeListenedMusician("Kenny Beats"));
     }
 
 }

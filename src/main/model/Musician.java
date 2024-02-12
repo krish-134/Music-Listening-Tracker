@@ -35,18 +35,18 @@ public class Musician implements MusicTracking {
         return false;
     }
 
-    // REQUIRES: Specified songTitle should already exist in songsHeard
-    // EFFECTS: returns given song if found in songsHeard
+
+    // EFFECTS: returns given song if found in songsHeard, otherwise
+    //          returns null if song is not found
     public Song findSong(String songTitle) {
         for (Song s: songsHeard) {
             if (songTitle.equals(s.getName())) {
                 return s;
             }
         }
-        return null; //THROW EXCEPTION!???!?!?
+        return null;
     }
 
-    // REQUIRES: songTitle should appear in song from songsHeard
     // EFFECTS: returns time listened to given song, otherwise 0 if
     //          song title does not appear in songsHeard
     public double getTimeListenedSong(String songTitle) {
@@ -54,7 +54,7 @@ public class Musician implements MusicTracking {
         if (findSong(songTitle) != null) {
             return song.getTotalTimeListened();
         }
-        return 0; //THROW/CATCH EXCEPTION!????????
+        return 0;
     }
 
     // REQUIRES: songsHeard should be non-empty
