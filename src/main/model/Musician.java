@@ -46,8 +46,6 @@ public class Musician implements MusicTracking {
         return null; //THROW EXCEPTION!???!?!?
     }
 
-    // getters
-
     // REQUIRES: songTitle should appear in song from songsHeard
     // EFFECTS: returns time listened to given song, otherwise 0 if
     //          song title does not appear in songsHeard

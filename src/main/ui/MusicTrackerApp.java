@@ -17,11 +17,9 @@ public class MusicTrackerApp {
     private Scanner input;
     private MusicLibrary userML;
 
-
     // EFFECTS: begins the music tracking application
     public MusicTrackerApp() {
         runMusicTracker();
-
     }
 
     // MODIFIES: this
@@ -157,7 +155,7 @@ public class MusicTrackerApp {
     // EFFECTS: displays the options for adding a song
     public void displayAddSongMenu(String artistName) {
         System.out.println("Select from the options below:");
-        System.out.println("\ta -> add a song to the " + artistName + " log");
+        System.out.println("\ta -> add a song to the '" + artistName + "' log");
         System.out.println("\te -> exit from adding songs");
     }
 
@@ -169,7 +167,7 @@ public class MusicTrackerApp {
         System.out.println("Enter the song title of the " + artistName + " song:");
         String songName = input.next();
 
-        System.out.println("Enter the length of " + songName);
+        System.out.println("Enter the time length of " + songName);
         double songLength = Double.parseDouble(input.next());
 
         System.out.println("Enter the amount of times you've played " + songName);
@@ -233,6 +231,7 @@ public class MusicTrackerApp {
         for (Musician m: userML.getMusiciansHeard()) {
             System.out.println(m.getName());
         }
+        System.out.println();
 
         viewMore();
     }

@@ -65,10 +65,12 @@ public class MusicianTest {
     }
 
     @Test
-    void testGetSpecificSong() {
+    void testFindSong() {
         assertEquals(ah, taylor.findSong("Anti-Hero"));
         assertEquals(bs, taylor.findSong("Blank Space"));
         assertEquals(ls, taylor.findSong("Love Story"));
+        assertNull(taylor.findSong("Lavender Haze"));
+        assertFalse(taylor.isSongFound("Lavender Haze"));
     }
 
     @Test
@@ -76,6 +78,7 @@ public class MusicianTest {
         assertEquals(3.23, taylor.getTimeListenedSong("Anti-Hero"));
         assertEquals(3.51 * 12, taylor.getTimeListenedSong("Blank Space"));
         assertEquals(3.57 * 9, taylor.getTimeListenedSong("Love Story"));
+        assertEquals(0, taylor.getTimeListenedSong("Lavender Haze"));
     }
 
     @Test

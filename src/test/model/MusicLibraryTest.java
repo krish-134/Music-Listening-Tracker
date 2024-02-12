@@ -8,7 +8,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ListeningHistoryTest {
+public class MusicLibraryTest {
 
     private MusicLibrary userML;
     private List<Musician> musicians;
@@ -149,6 +149,7 @@ public class ListeningHistoryTest {
     void testFindMusician() {
         assertEquals(kendrick, userML.findMusician("Kendrick Lamar"));
         assertEquals(taylor, userML.findMusician("Taylor Swift"));
+        assertNull(userML.findMusician("Miles Davis"));
     }
 
     @Test
@@ -163,6 +164,7 @@ public class ListeningHistoryTest {
     void testGetTimeListenedFromMusician() {
         assertEquals(6.27 * 6, userML.getTimeListenedFromMusician("Kendrick Lamar"));
         assertEquals(77.48, userML.getTimeListenedFromMusician("Taylor Swift"));
+        assertEquals(0, userML.getTimeListenedFromMusician("Kenny Beats"));
     }
 
 }
