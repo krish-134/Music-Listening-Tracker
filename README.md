@@ -13,7 +13,7 @@ with programming.
 *User Stories*
 - As a user, I want to be able to *add* an **artist/band** and the **songs**
 I heard to my listening history list
-- As a user, I want to be able to **add** the **amount of time** I've spent listening
+- As a user, I want to be able to *add* the **amount of time** I've spent listening
 to a given song
 - As a user, I want to be able to *view* the list of **artists/bands** on my listening history
 - As a user, I want to be able to *view* the **amount of time** that I have spent
