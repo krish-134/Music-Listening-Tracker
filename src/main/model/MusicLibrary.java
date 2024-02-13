@@ -8,6 +8,7 @@ public class MusicLibrary implements MusicTracking {
     private String user;
     private List<Musician> musiciansHeard;
 
+    // REQUIRES: name should be non-empty string
     // EFFECTS: creates list of musicians
     public MusicLibrary(String name, List<Musician> musiciansHeard) {
         user = name;

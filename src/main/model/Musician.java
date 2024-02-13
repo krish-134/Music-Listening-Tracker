@@ -9,7 +9,7 @@ public class Musician implements MusicTracking {
     private String name;
     private List<Song> songsHeard;
 
-    // REQUIRES: The songsHeard list should be non-empty and timeListened > 0
+    // REQUIRES: The songsHeard list should be non-empty and name should be non-empty string
     // EFFECTS: Instantiates musician with a name, the list of their songs the user
     //          listened to, and the amount of time the user listened to the musician/group
     public Musician(String name, List<Song> songsHeard) {
