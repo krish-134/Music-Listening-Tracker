@@ -76,8 +76,6 @@ public class MusicLibraryTest {
 
     }
 
-
-
     @Test
     void testGetMostHeardMusicianThenMoreHeardMusician() {
         assertEquals(taylor, userML.getMostHeardMusician());
@@ -90,7 +88,6 @@ public class MusicLibraryTest {
 
         assertEquals(bill, userML.getMostHeardMusician());
     }
-
 
     @Test
     void testGetMostHeardMusicianThenMoreLessMusician() {
@@ -117,7 +114,6 @@ public class MusicLibraryTest {
 
         assertEquals(kendrick, userML.getLeastHeardMusician());
     }
-
 
     @Test
     void testGetLeastHeardMusicianThenLessHeardMusician() {

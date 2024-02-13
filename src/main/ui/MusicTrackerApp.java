@@ -64,8 +64,8 @@ public class MusicTrackerApp {
     // EFFECTS: displays the initial menu of program options
     private void mainMenu() {
         System.out.println("Select from the options below:");
-        System.out.println("\t1 - add song to a current or new musician");
-        System.out.println("\t2 - statistics from your music listening habits");
+        System.out.println("\t1 - add new music");
+        System.out.println("\t2 - statistics from your music");
         System.out.println("\t3 - exit program");
     }
 

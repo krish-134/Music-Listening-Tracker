@@ -8,7 +8,6 @@ public class Song implements MusicTracking {
     private double songLength;
     private int timesPlayed;
 
-
     // REQUIRES: songLength > 0 and timesPlayed > 0
     // EFFECTS: creates a song with a name, the length, the amount of times the song has been played,
     //          and whether the song is a favourite
@@ -18,6 +17,7 @@ public class Song implements MusicTracking {
         this.timesPlayed = timesPlayed;
     }
 
+    // REQUIRES: t >= 0
     // MODIFIES: this
     // EFFECTS: adds amount of times the song has been played
     public void addTimesPlayed(int t) {

@@ -35,7 +35,6 @@ public class Musician implements MusicTracking {
         return false;
     }
 
-
     // EFFECTS: returns given song if found in songsHeard, otherwise
     //          returns null if song is not found
     public Song findSong(String songTitle) {

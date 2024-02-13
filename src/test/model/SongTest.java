@@ -20,7 +20,6 @@ public class SongTest {
         assertEquals(4.49, alterEgo.getSongLength());
         assertEquals(17, alterEgo.getTimesPlayed());
     }
-
     @Test
     void testAddTimesPlayed() {
         alterEgo.addTimesPlayed(1);
@@ -41,9 +40,5 @@ public class SongTest {
         assertEquals(23, alterEgo.getTimesPlayed());
         assertEquals(23 * 4.49, alterEgo.getTotalTimeListened());
     }
-
-
-
-
 
 }

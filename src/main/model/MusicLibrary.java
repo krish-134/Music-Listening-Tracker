@@ -31,7 +31,6 @@ public class MusicLibrary implements MusicTracking {
         return false;
     }
 
-
     // REQUIRES: m should already exist in musiciansHeard
     // EFFECTS: returns given musician if found in musiciansHeard, otherwise
     //          returns null if musician is not found

@@ -6,6 +6,7 @@ import model.Song;
 
 import java.util.Scanner;
 
+// This class shows the user's behaviour by displaying data from their music library
 public class ViewStats {
     private Scanner input;
     private MusicLibrary userML;
@@ -17,41 +18,56 @@ public class ViewStats {
     }
 
     // EFFECTS: displays the most and least heard stats for the user,
-    //          and then gives further viewing options
+    //          and then gives further viewing options. If they mostHeard
+    //          and leastHeard musician are the same then print one of them, otherwise both
     private void getStats() {
         Musician mostHeard = userML.getMostHeardMusician();
-        Musician leastHeard = userML.getMostHeardMusician();
+        Musician leastHeard = userML.getLeastHeardMusician();
 
         System.out.println(userML.getName() + "'s total listening time: "
                 + userML.getTotalTimeListened() + " minutes\n");
 
+        viewArtists();
+
         if (mostHeard == leastHeard) {
-            System.out.println("Most listened to artist: " + mostHeard.getName() + "\n");
+            System.out.println("You have -most- listened too...\n");
             printArtistStat(mostHeard);
 
         } else {
-            System.out.println("Most listened to artist: " + mostHeard.getName() + "\n");
+            System.out.println("You have -most- listened too...\n");
             printArtistStat(mostHeard);
-            System.out.println("Least listened to artist: " + leastHeard.getName() + "\n");
+            System.out.println("You have -least- listened too...\n");
             printArtistStat(leastHeard);
         }
-        viewArtists();
+
+        viewMore();
     }
 
     // EFFECTS: displays all the viewable information about how much
-    //          the user has listened to a given musician and their songs
+    //          the user has listened to a given musician and their songs.
+    //          If the most and least listened to songs are they same only
+    //          one is printed, otherwise both are
     private void printArtistStat(Musician m) {
         Song mostHeard = m.getMostHeardSong();
         Song leastHeard = m.getLeastHeardSong();
         System.out.println("Artist: " + m.getName());
         System.out.println("Total time spent listening: " + m.getTotalTimeListened() + " minutes");
-        System.out.println("Most listened song: '" + mostHeard.getName()
-                + "' for a total of " + mostHeard.getTotalTimeListened() + " minutes");
-        System.out.println("Least listened song: '" + leastHeard.getName()
-                + "' for a total of " + leastHeard.getTotalTimeListened() + " minutes");
 
+        if (mostHeard.getName().equals(leastHeard.getName())) {
+            System.out.println("Most listened song: '" + mostHeard.getName()
+                    + "' for a total of " + mostHeard.getTotalTimeListened() + " minutes");
+        } else {
+            System.out.println("Most listened song: '" + mostHeard.getName()
+                    + "' for a total of " + mostHeard.getTotalTimeListened() + " minutes");
+            System.out.println("Least listened song: '" + leastHeard.getName()
+                    + "' for a total of " + leastHeard.getTotalTimeListened() + " minutes");
+        }
+        displayArtistSongs(m);
+    }
+
+    // EFFECTS: displays every song and related song-info from the musician in the music library
+    private void displayArtistSongs(Musician m) {
         System.out.println("ALl the " + m.getName() + " songs you have listened to include:\n");
-
         for (Song s: m.getSongsHeard()) {
             System.out.println("Song: " + s.getName());
             System.out.println("Song-length: " + s.getSongLength() + " minutes");
@@ -69,9 +85,8 @@ public class ViewStats {
         for (Musician m: userML.getMusiciansHeard()) {
             System.out.println(m.getName());
         }
-        System.out.println();
 
-        viewMore();
+        System.out.println();
     }
 
     // EFFECTS: gives the option to view stats about any specific musician
@@ -95,11 +110,10 @@ public class ViewStats {
     // EFFECTS: displays the options for viewing artists
     private void viewArtistsMenu() {
         System.out.println("Select from the options below:");
-        System.out.println("\t1 - view the information from an artist");
+        System.out.println("\t1 - view artist information");
         System.out.println("\t2 - exit from stats");
     }
 
-    // REQUIRES: the entered musician should appear in the user's music library
     // EFFECTS: displays the information about the requested artist
     private void viewChoiceArtist() {
         String artistName;
