@@ -18,3 +18,8 @@ to a given song
 - As a user, I want to be able to *view* the list of **artists/bands** on my listening history
 - As a user, I want to be able to *view* the **amount of time** that I have spent
 listening to a given **artist/band** or **song** from my listening history
+
+*Phase Two User Stories*:
+- As a user, I want to be able to *save* my **list of musicians** to file
+- As a user, I want to be able ot *load* my **list of musicians** from file
+- As a user, I want to be reminded about saving my file when I quit the program

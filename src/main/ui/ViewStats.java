@@ -24,7 +24,7 @@ public class ViewStats {
         Musician mostHeard = userML.getMostHeardMusician();
         Musician leastHeard = userML.getLeastHeardMusician();
 
-        System.out.println(userML.getName() + "'s total listening time: "
+        System.out.println("Your total listening time: "
                 + userML.getTotalTimeListened() + " minutes\n");
 
         viewArtists();
@@ -102,28 +102,36 @@ public class ViewStats {
             } else if (choice.equalsIgnoreCase("1")) {
                 viewChoiceArtist();
             } else {
-                System.out.println("Input option does not exist");
+                System.out.println("--Input option does not exist--\n");
             }
         }
     }
 
     // EFFECTS: displays the options for viewing artists
     private void viewArtistsMenu() {
-        System.out.println("Select from the options below:");
+        System.out.println("Select more statistics options below:");
         System.out.println("\t1 - view artist information");
         System.out.println("\t2 - exit from stats");
     }
 
     // EFFECTS: displays the information about the requested artist
     private void viewChoiceArtist() {
-        String artistName;
-        System.out.println("Enter the artist whose information you wish to view:");
-        artistName = input.next();
+        String artistName = null;
+        boolean goLoop = true;
+        while (goLoop) {
+            System.out.println("Enter the artist whose information you wish to view:");
+            artistName = input.next();
+            if (artistName.equals("")) {
+                System.out.println("--Artist name cannot be empty string--\n");
+            } else {
+                goLoop = false;
+            }
+        }
 
         if (userML.isMusicianFound(artistName)) {
             printArtistStat(userML.findMusician(artistName));
         } else {
-            System.out.println("This artist name is not in your music log\n");
+            System.out.println("--This artist was not found in your music log--\n");
         }
     }
 

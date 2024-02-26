@@ -13,7 +13,7 @@ public class LogMusic {
     private Scanner input;
     private MusicLibrary userML;
 
-    // Initializes the input and userML from the initial menu, then performs music entries
+    //EFFECTS: Initializes the input and userML from the initial menu, then performs music entries
     public LogMusic(Scanner input, MusicLibrary userML) {
         this.input = input;
         this.userML = userML;
@@ -25,8 +25,18 @@ public class LogMusic {
     //          and performs corresponding command, where a new artist
     //          will be created if it does not currently exist in the library
     private void addMusic() {
-        System.out.println("Enter the artist that made the song:");
-        String artistName = input.next();
+        String artistName = null;
+        boolean goLoop = true;
+        while (goLoop) {
+            System.out.println("Enter the artist that made the song:");
+            artistName = input.next();
+
+            if (artistName.equals("")) {
+                System.out.println("--Artist name cannot be empty string--\n");
+            } else {
+                goLoop = false;
+            }
+        }
 
         if (userML.isMusicianFound(artistName)) {
             addSongInfo(artistName);
@@ -37,11 +47,20 @@ public class LogMusic {
     }
 
     // MODIFIES: this
-    // EFFECTS: adds the number of times played if the song already exists in the user's
-    //          music library, otherwise creates a new entry for a song
+    // EFFECTS: adds the number of times a song has been played if the song already
+    //          exists in the user's music library, otherwise creates a new entry for a song
     private void addSongInfo(String artistName) {
-        System.out.println("Enter a " + artistName + " song:");
-        String songName = input.next();
+        String songName = null;
+        boolean goLoop = true;
+        while (goLoop) {
+            System.out.println("Enter a " + artistName + " song:");
+            songName = input.next();
+            if (songName.equals("")) {
+                System.out.println("--Song name cannot be empty string--\n");
+            } else {
+                goLoop = false;
+            }
+        }
 
         boolean isSongInList = userML.findMusician(artistName).isSongFound(songName);
 
@@ -73,7 +92,7 @@ public class LogMusic {
             System.out.println("Enter the amount of times you've played '" + songName + "':");
             timesPlayed = Integer.parseInt(input.next());
             if ((songLength == 0) || (timesPlayed == 0)) {
-                System.out.println("--Zero is not a viable entry--");
+                System.out.println("--Zero is not a viable entry--\n");
             } else {
                 goLoop = false;
             }
@@ -92,11 +111,15 @@ public class LogMusic {
     private void addNewMusician(String artistName) {
         boolean addMore = true;
         boolean hasAddedSong = false;
-
-        while (addMore) {
+        int atLeastOnce = 1;
+        while (atLeastOnce > 0) {
             displayAddSongMenu(artistName);
-            addMore = addSongCases(artistName, hasAddedSong);
-            hasAddedSong = true;
+            int addSongStatus = addSongCases(artistName, hasAddedSong);
+            if (addSongStatus == 0) {
+                atLeastOnce = 0;
+            } else if (addSongStatus == 1) {
+                hasAddedSong = true;
+            }
         }
     }
 
@@ -105,23 +128,20 @@ public class LogMusic {
     //          one song must be added to the musician before exiting, and
     //          a new artist with a list of songs will be created if required.
     //          True is returned if a song has been added.
-    private boolean addSongCases(String artistName, boolean hasAddedSong) {
+    private int addSongCases(String artistName, boolean hasAddedSong) {
         String choice = input.next();
 
         if (choice.equalsIgnoreCase("2") && hasAddedSong) {
-            return false;
-
+            return 0;
         } else if (choice.equalsIgnoreCase("1")) {
             checkArtistNew(artistName);
-            return true;
-
+            return 1;
         } else if (!hasAddedSong) {
             System.out.println("--Enter at least one song entry--\n");
-            return true;
-
+            return 2;
         } else {
             System.out.println("--Option does not exist--\n");
-            return true;
+            return 2;
         }
     }
 

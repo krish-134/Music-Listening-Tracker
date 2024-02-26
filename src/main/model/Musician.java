@@ -13,6 +13,7 @@ public class Musician implements MusicTracking {
     // EFFECTS: Instantiates musician with a name, the list of their songs the user
     //          listened to, and the amount of time the user listened to the musician/group
     public Musician(String name, List<Song> songsHeard) {
+
         this.name = name;
         this.songsHeard = songsHeard;
     }
@@ -23,7 +24,7 @@ public class Musician implements MusicTracking {
     // EFFECTS: adds a song to the songs listened to by user
     public void addSong(Song song) {
         songsHeard.add(song);
-    } //THROW EXCEPTION IF SONG IS ALREADY IN LIST!??!?!
+    }
 
     // EFFECTS: returns true if the given song is in songsHeard
     public boolean isSongFound(String songTitle) {
@@ -97,7 +98,6 @@ public class Musician implements MusicTracking {
         return songsHeard;
     }
 
-    @Override
     public String getName() {
         return name;
     }

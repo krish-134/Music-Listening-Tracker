@@ -55,7 +55,7 @@ public class MusicTrackerApp {
         artists = new ArrayList<>();
         artists.add(kendrick);
 
-        userML = new MusicLibrary("Johny", artists);
+        userML = new MusicLibrary(artists);
 
         input = new Scanner(System.in);
         input.useDelimiter("\n");
@@ -76,7 +76,7 @@ public class MusicTrackerApp {
         } else if (choice.equalsIgnoreCase("2")) {
             new ViewStats(input, userML);
         } else {
-            System.out.println("Input option does not exist");
+            System.out.println("--Input option does not exist--\n");
         }
     }
 

@@ -5,13 +5,11 @@ import java.util.List;
 // This class contains the list of musicians that user has listened to
 public class MusicLibrary implements MusicTracking {
 
-    private String user;
     private List<Musician> musiciansHeard;
 
     // REQUIRES: name should be non-empty string
     // EFFECTS: creates list of musicians
-    public MusicLibrary(String name, List<Musician> musiciansHeard) {
-        user = name;
+    public MusicLibrary(List<Musician> musiciansHeard) {
         this.musiciansHeard = musiciansHeard;
     }
 
@@ -37,7 +35,7 @@ public class MusicLibrary implements MusicTracking {
     //          returns null if musician is not found
     public Musician findMusician(String name) {
         for (Musician m: musiciansHeard) {
-            if (name.equals(m.getName())) {
+            if (name.equalsIgnoreCase(m.getName())) {
                 return m;
             }
         }
@@ -89,12 +87,6 @@ public class MusicLibrary implements MusicTracking {
             return m.getTotalTimeListened();
         }
         return 0;
-    }
-
-
-    @Override
-    public String getName() {
-        return user;
     }
 
     public List<Musician> getMusiciansHeard() {

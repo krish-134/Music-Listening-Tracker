@@ -32,9 +32,6 @@ public class Song implements MusicTracking {
         return songLength * timesPlayed;
     }
 
-    // simple getters
-
-    @Override
     public String getName() {
         return name;
     }
