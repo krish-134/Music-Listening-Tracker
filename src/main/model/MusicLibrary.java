@@ -1,9 +1,14 @@
 package model;
 
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistance.Writable;
+
 import java.util.List;
 
 // This class contains the list of musicians that user has listened to
-public class MusicLibrary implements MusicTracking {
+public class MusicLibrary implements MusicTracking, Writable {
 
     private List<Musician> musiciansHeard;
 
@@ -93,4 +98,27 @@ public class MusicLibrary implements MusicTracking {
         return musiciansHeard;
     }
 
+
+    // Credit: the following toJson methods is based off of
+    //         the JsonSerializationDemo project from the
+    //         CPSC 210 of the University of British Columbia
+
+    // EFFECTS: returns music library as JSON object
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("musiciansHeard", musiciansHeard);
+        return json;
+    }
+
+    // EFFECTS: returns musicians from music library to a JSON array
+    public JSONArray musiciansToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Musician m : musiciansHeard) {
+            jsonArray.put(m.toJson());
+        }
+
+        return jsonArray;
+    }
 }

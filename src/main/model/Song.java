@@ -1,8 +1,11 @@
 package model;
 
+import org.json.JSONObject;
+import persistance.Writable;
+
 // This class tracks information about the user's behaviour
 // with a given song
-public class Song implements MusicTracking {
+public class Song implements MusicTracking, Writable {
 
     private String name;
     private double songLength;
@@ -43,5 +46,20 @@ public class Song implements MusicTracking {
     public int getTimesPlayed() {
         return timesPlayed;
     }
+
+    // Credit: the following toJson method is based off of
+    //         the JsonSerializationDemo project from the
+    //         CPSC 210 of the University of British Columbia
+
+    // EFFECTS: returns song as JSON object
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("songLength", songLength);
+        json.put("timesPlayed", timesPlayed);
+        return json;
+    }
+
 }
 

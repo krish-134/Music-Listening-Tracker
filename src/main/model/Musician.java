@@ -1,10 +1,14 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistance.Writable;
 
-// This class creates the information about a single musician/group
 import java.util.List;
 
-public class Musician implements MusicTracking {
+
+// This class creates the information about a single musician/group\
+public class Musician implements MusicTracking, Writable {
 
     private String name;
     private List<Song> songsHeard;
@@ -102,5 +106,28 @@ public class Musician implements MusicTracking {
         return name;
     }
 
+    // Credit: the following toJson methods is based off of
+    //         the JsonSerializationDemo project from the
+    //         CPSC 210 of the University of British Columbia
+
+    // EFFECTS: returns musician as JSON object
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("songsHeard", songsHeard);
+        return json;
+    }
+
+    // EFFECTS: returns songs from musician to a JSON array
+    public JSONArray songsToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Song s : songsHeard) {
+            jsonArray.put(s.toJson());
+        }
+
+        return jsonArray;
+    }
 
 }
