@@ -33,25 +33,25 @@ public class MusicianTest {
     @Test
     void testConstructor() {
         assertEquals("Taylor Swift", taylor.getName());
-        assertEquals(tSongs, taylor.getSongsHeard());
-        assertEquals(3, taylor.getSongsHeard().size());
-        assertEquals(ah, taylor.getSongsHeard().get(0));
-        assertEquals(bs, taylor.getSongsHeard().get(1));
-        assertEquals(ls, taylor.getSongsHeard().get(2));
+        assertEquals(tSongs, taylor.getSongs());
+        assertEquals(3, taylor.getSongs().size());
+        assertEquals(ah, taylor.getSongs().get(0));
+        assertEquals(bs, taylor.getSongs().get(1));
+        assertEquals(ls, taylor.getSongs().get(2));
         assertEquals(77.48, taylor.getTotalTimeListened());
     }
 
     @Test
     void testAddSong() {
 
-        assertEquals(3, taylor.getSongsHeard().size());
+        assertEquals(3, taylor.getSongs().size());
 
         Song red;
         red = new Song("Red", 3.43, 1);
         taylor.addSong(red);
 
-        assertEquals(4, taylor.getSongsHeard().size());
-        assertEquals(red, taylor.getSongsHeard().get(3));
+        assertEquals(4, taylor.getSongs().size());
+        assertEquals(red, taylor.getSongs().get(3));
         assertEquals(80.91, taylor.getTotalTimeListened());
 
     }
@@ -90,8 +90,8 @@ public class MusicianTest {
         red = new Song("Red", 3.43, 1);
         tSongs.add(red);
 
-        assertEquals(4, taylor.getSongsHeard().size());
-        assertEquals(red, taylor.getSongsHeard().get(3));
+        assertEquals(4, taylor.getSongs().size());
+        assertEquals(red, taylor.getSongs().get(3));
         assertEquals(80.91, taylor.getTotalTimeListened());
     }
 

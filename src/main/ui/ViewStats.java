@@ -68,7 +68,7 @@ public class ViewStats {
     // EFFECTS: displays every song and related song-info from the musician in the music library
     private void displayArtistSongs(Musician m) {
         System.out.println("ALl the " + m.getName() + " songs you have listened to include:\n");
-        for (Song s: m.getSongsHeard()) {
+        for (Song s: m.getSongs()) {
             System.out.println("Song: " + s.getName());
             System.out.println("Song-length: " + s.getSongLength() + " minutes");
             System.out.println("Times played: " + s.getTimesPlayed() + " times");
@@ -78,11 +78,11 @@ public class ViewStats {
 
     // EFFECTS: provides a display of every musician in the user's library
     private void viewArtists() {
-        int numArtists = userML.getMusiciansHeard().size();
+        int numArtists = userML.getMusicians().size();
         System.out.println("You have listened to " + numArtists + " musician(s)!");
         System.out.println("A list of all of your musicians include:\n");
 
-        for (Musician m: userML.getMusiciansHeard()) {
+        for (Musician m: userML.getMusicians()) {
             System.out.println(m.getName());
         }
 

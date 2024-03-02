@@ -2,7 +2,7 @@ package ui;
 
 import model.MusicLibrary;
 import model.Musician;
-import model.Song;
+import persistance.JsonReader;
 import persistance.JsonWriter;
 
 import java.io.FileNotFoundException;
@@ -21,10 +21,13 @@ public class MusicTrackerApp {
 
     private JsonWriter jsonWriter;
 
+    private JsonReader jsonReader;
+
 
     // EFFECTS: begins the music tracking application
-    public MusicTrackerApp() {
+    public MusicTrackerApp() throws FileNotFoundException {
         jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         runMusicTracker();
     }
 
@@ -40,7 +43,7 @@ public class MusicTrackerApp {
             mainMenu();
             choice = input.next();
 
-            if (choice.equalsIgnoreCase("4")) {
+            if (choice.equalsIgnoreCase("5")) {
                 goLoop = false;
             } else {
                 nextCommand(choice);
@@ -53,14 +56,15 @@ public class MusicTrackerApp {
     // EFFECTS: initializes a library of music that the user has already heard,
     //          along with the user's name
     private void init() {
-        List<Musician> artists;
 
-        List<Song> kenSongs = new ArrayList<>();
-        Song mt = new Song("Money Trees", 6.27, 6);
-        kenSongs.add(mt);
-        Musician kendrick = new Musician("Kendrick Lamar", kenSongs);
-        artists = new ArrayList<>();
-        artists.add(kendrick);
+        List<Musician> artists = new ArrayList<>();
+
+//        List<Song> kenSongs = new ArrayList<>();
+//        Song mt = new Song("Money Trees", 6.27, 6);
+//        kenSongs.add(mt);
+//        Musician kendrick = new Musician("Kendrick Lamar", kenSongs);
+//        artists = new ArrayList<>();
+//        artists.add(kendrick);
 
         userML = new MusicLibrary(artists);
 
@@ -73,20 +77,34 @@ public class MusicTrackerApp {
         System.out.println("Select from the options below:");
         System.out.println("\t1 - add new music");
         System.out.println("\t2 - statistics from your music");
-        System.out.println("\t3 - save music library to file");
-        System.out.println("\t4 - exit program");
+        System.out.println("\t3 - load music library from file");
+        System.out.println("\t4 - save music library to file");
+        System.out.println("\t5 - exit program");
     }
 
     // EFFECTS: evaluates user decision on adding new music or viewing their info
     private void nextCommand(String choice) {
-        if (choice.equals("1")) {
-            new LogMusic(input, userML);
-        } else if (choice.equals("2")) {
-            new ViewStats(input, userML);
-        } else if (choice.equals("3")) {
-            saveMusicLibrary();
-        } else {
-            System.out.println("--Input option does not exist--\n");
+        switch (choice) {
+            case "1":
+                new MusicLog(input, userML);
+                break;
+            case "2":
+                if (userML.getMusicians().size() == 0) {
+                    System.out.println("--Current music library is empty, no statistics can be made-- \n"
+                            + "--Add music or load your music library from file before viewing statistics--\n");
+                } else {
+                    new ViewStats(input, userML);
+                }
+                break;
+            case "3":
+                loadMusicLibrary();
+                break;
+            case "4":
+                saveMusicLibrary();
+                break;
+            default:
+                System.out.println("--Input option does not exist--\n");
+                break;
         }
     }
 
@@ -99,6 +117,17 @@ public class MusicTrackerApp {
             System.out.println("Saved current Music Library to: " + JSON_STORE);
         } catch (FileNotFoundException e) {
             System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads workroom from file
+    private void loadMusicLibrary() {
+        try {
+            userML = jsonReader.read();
+            System.out.println("Loaded music library from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
         }
     }
 

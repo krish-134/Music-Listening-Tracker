@@ -40,19 +40,18 @@ public class MusicLibraryTest {
         musicians = new ArrayList<>();
         musicians.add(kendrick);
         musicians.add(taylor);
-        userML = new MusicLibrary("Miguel", musicians);
+        userML = new MusicLibrary(musicians);
 
     }
 
     @Test
     void testConstructor() {
-        assertEquals("Miguel", userML.getName());
-        assertEquals(musicians, userML.getMusiciansHeard());
+        assertEquals(musicians, userML.getMusicians());
     }
 
     @Test
     void testAddMusician() {
-        assertEquals(2, userML.getMusiciansHeard().size());
+        assertEquals(2, userML.getMusicians().size());
 
         List<Song> bSongs = new ArrayList<>();
         Song mr = new Song("My Romance", 7.12, 1);
@@ -60,8 +59,8 @@ public class MusicLibraryTest {
         Musician bill = new Musician("Bill Evans", bSongs);
 
         userML.addMusician(bill);
-        assertEquals(3, userML.getMusiciansHeard().size());
-        assertEquals(bill, userML.getMusiciansHeard().get(2));
+        assertEquals(3, userML.getMusicians().size());
+        assertEquals(bill, userML.getMusicians().get(2));
 
         List<Song> tiSongs = new ArrayList<>();
         Song ae = new Song("Alter Ego", 4.49, 17);
@@ -71,8 +70,8 @@ public class MusicLibraryTest {
         Musician tameImpala = new Musician("Tame Impala", tiSongs);
 
         userML.addMusician(tameImpala);
-        assertEquals(4, userML.getMusiciansHeard().size());
-        assertEquals(tameImpala, userML.getMusiciansHeard().get(3));
+        assertEquals(4, userML.getMusicians().size());
+        assertEquals(tameImpala, userML.getMusicians().get(3));
 
     }
 

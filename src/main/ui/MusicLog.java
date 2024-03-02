@@ -9,12 +9,12 @@ import java.util.List;
 import java.util.Scanner;
 
 // This class performs all the methods that involve adding new music to the library
-public class LogMusic {
+public class MusicLog {
     private Scanner input;
     private MusicLibrary userML;
 
     //EFFECTS: Initializes the input and userML from the initial menu, then performs music entries
-    public LogMusic(Scanner input, MusicLibrary userML) {
+    public MusicLog(Scanner input, MusicLibrary userML) {
         this.input = input;
         this.userML = userML;
         addMusic();
@@ -109,7 +109,6 @@ public class LogMusic {
     //          along with the songs the user has heard, otherwise will exit
     //          after the user has added at least one song to the musician
     private void addNewMusician(String artistName) {
-        boolean addMore = true;
         boolean hasAddedSong = false;
         int atLeastOnce = 1;
         while (atLeastOnce > 0) {
@@ -151,7 +150,7 @@ public class LogMusic {
     private void checkArtistNew(String artistName) {
         List<Song> songList;
         if (userML.isMusicianFound(artistName)) {
-            songList = userML.findMusician(artistName).getSongsHeard();
+            songList = userML.findMusician(artistName).getSongs();
         } else {
             songList = new ArrayList<>();
         }
