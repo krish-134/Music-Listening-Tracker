@@ -44,6 +44,7 @@ public class MusicTrackerApp {
             choice = input.next();
 
             if (choice.equalsIgnoreCase("5")) {
+                askSaveBeforeQuit();
                 goLoop = false;
             } else {
                 nextCommand(choice);
@@ -108,15 +109,28 @@ public class MusicTrackerApp {
         }
     }
 
+    private void askSaveBeforeQuit() {
+        String choice;
+        System.out.println("Do you want to save before quitting?");
+        System.out.println("\t1 - yes, save my current music library");
+        System.out.println("\t2 - no, do not save");
+        choice = input.next();
+        if (choice.equals("1")) {
+            saveMusicLibrary();
+        } else if (!choice.equals("2")) {
+            System.out.println("--Input option does not exist--\n");
+        }
+    }
+
     // EFFECTS: saves the music library to file
     private void saveMusicLibrary() {
         try {
             jsonWriter.open();
             jsonWriter.write(userML);
             jsonWriter.close();
-            System.out.println("Saved current Music Library to: " + JSON_STORE);
+            System.out.println("Saved current Music Library to: " + JSON_STORE + "\n");
         } catch (FileNotFoundException e) {
-            System.out.println("Unable to write to file: " + JSON_STORE);
+            System.out.println("Unable to write to file: " + JSON_STORE + "\n");
         }
     }
 
@@ -125,9 +139,9 @@ public class MusicTrackerApp {
     private void loadMusicLibrary() {
         try {
             userML = jsonReader.read();
-            System.out.println("Loaded music library from " + JSON_STORE);
+            System.out.println("Loaded music library from " + JSON_STORE + "\n");
         } catch (IOException e) {
-            System.out.println("Unable to read from file: " + JSON_STORE);
+            System.out.println("Unable to read from file: " + JSON_STORE + "\n");
         }
     }
 
