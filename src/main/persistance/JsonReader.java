@@ -83,21 +83,18 @@ public class JsonReader {
         JSONArray jsonArray = jsonObject.getJSONArray("songs");
         for (Object json : jsonArray) {
             JSONObject nextSong = (JSONObject) json;
-            addSong(ml, nextSong, musician);
+            addSong(nextSong, musician);
         }
     }
 
     // MODIFIES: ml & musician
     // EFFECTS: parses musician from JSON object and adds it to music library
-    private void addSong(MusicLibrary ml, JSONObject jsonObject, Musician musician) {
+    private void addSong(JSONObject jsonObject, Musician musician) {
         String name = jsonObject.getString("name");
         double songLength = jsonObject.getDouble("songLength");
         int timesPlayed = jsonObject.getInt("timesPlayed");
         Song song = new Song(name, songLength, timesPlayed);
         musician.addSong(song);
     }
-
-
-
 
 }

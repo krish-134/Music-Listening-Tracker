@@ -1,4 +1,4 @@
-# Music-Listening History Tracker
+# Music-Listening Tracker
 
 ## Proposal
 This application will track the statistics for 
@@ -22,4 +22,4 @@ listening to a given **artist/band** or **song** from my listening history
 *Phase Two User Stories*:
 - As a user, I want to be able to *save* my **list of musicians** to file
 - As a user, I want to be able ot *load* my **list of musicians** from file
-- As a user, I want to be reminded about saving my file when I quit the program
+- As a user, I want to be *reminded* about **saving my file** when I quit the program
