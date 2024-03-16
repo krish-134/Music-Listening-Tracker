@@ -7,7 +7,7 @@ import persistance.Writable;
 import java.util.List;
 
 
-// This class creates the information about a single musician/group\
+// This class creates the information about a single musician/group
 public class Musician implements MusicTracking, Writable {
 
     private String name;

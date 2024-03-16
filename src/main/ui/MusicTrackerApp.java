@@ -28,6 +28,7 @@ public class MusicTrackerApp {
     public MusicTrackerApp() throws FileNotFoundException {
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
+        new DisplayMusicLibrary(this);
         runMusicTracker();
     }
 
@@ -84,7 +85,7 @@ public class MusicTrackerApp {
     }
 
     // EFFECTS: evaluates user decision on adding new music or viewing their info
-    private void nextCommand(String choice) {
+    public void nextCommand(String choice) {
         switch (choice) {
             case "1":
                 new MusicLog(input, userML);
