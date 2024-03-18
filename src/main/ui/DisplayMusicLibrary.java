@@ -1,25 +1,28 @@
 package ui;
 
+import model.MusicLibrary;
+import model.Musician;
+
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 
 public class DisplayMusicLibrary extends JFrame {
 
-    private static final int WIDTH = 900;
-    private static final int HEIGHT = 700;
+    private static final int WIDTH = 750;
+    private static final int HEIGHT = 600;
 
     private MusicTrackerApp mta;
-
-    private JPanel panel;
+    private MusicLibrary userML;
+    private JPanel menuPanel;
+    private JPanel listPanel;
     JLabel label;
 
-    public DisplayMusicLibrary(MusicTrackerApp mta) {
+    public DisplayMusicLibrary(MusicTrackerApp mta, MusicLibrary musicLibrary) {
         super("Music Library Tracker");
         this.mta = mta;
+        this.userML = musicLibrary;
         initializeDisplay();
     }
-
 
     // MODIFIES: this
     // EFFECTS: creates initial settings for display
@@ -31,55 +34,89 @@ public class DisplayMusicLibrary extends JFrame {
         getContentPane().setBackground(new Color(105, 105, 105));
         setVisible(true);
 
-        setButtonsMainMenu();
+        createMenuPanel();
+        createListPanel();
     }
 
-    private void firstMenu() {
-
-        panel = new JPanel();
-
-        panel.setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 30));
-        panel.setLayout(new GridLayout(0,1));
-        panel.setBounds(0, 0, WIDTH, HEIGHT);
-        panel.setBackground(new Color(105, 105, 105));
+    private void createMenuPanel() {
+        menuPanel = new JPanel();
+        menuPanel.setPreferredSize(new Dimension(WIDTH, 90));
+        menuPanel.setLayout(new FlowLayout());
+        menuPanel.setBackground(new Color(105, 105, 105));
+        add(menuPanel, BorderLayout.NORTH);
         setButtonsMainMenu();
 
-        add(panel, BorderLayout.CENTER);
+    }
+
+    private void createListPanel() {
+        listPanel = new JPanel();
+        listPanel.setLayout(new BorderLayout());
+        listPanel.setBackground(new Color(105, 90, 105));
+
+        add(listPanel, BorderLayout.CENTER);
 
     }
 
     private void setButtonsMainMenu() {
         JButton button1 = new JButton("add new music");
-        button1.setBounds(50, 80, 150, 75);
 
         JButton button2 = new JButton("statistics");
-        button2.setBounds(210, 80, 150, 75);
 
         JButton button3 = new JButton("load music library");
-        button3.setBounds(370, 80, 150, 75);
 
         JButton button4 = new JButton("save music library");
-        button4.setBounds(530, 80, 150, 75);
 
-        JButton button5 = new JButton("exit program");
-        button5.setBounds(690, 80, 150, 75);
+        menuPanel.add(button1);
+        menuPanel.add(button2);
+        menuPanel.add(button3);
+        menuPanel.add(button4);
 
-        add(button1);
-        add(button2);
-        add(button3);
-        add(button4);
-        add(button5);
+        button1.addActionListener(e -> displayMusicList());
+        button2.addActionListener(e -> {
+            this.remove(menuPanel);
+            revalidate();
+            mainViewStatsAction();
+        });
 
-        button1.addActionListener(e -> mta.nextCommand("1"));
-        button2.addActionListener(e -> mta.nextCommand("2"));
-        button3.addActionListener(e -> mta.nextCommand("3"));
+        button3.addActionListener(e -> {
+            mta.nextCommand("3");
+            displayMusicList();
+        });
+
         button4.addActionListener(e -> mta.nextCommand("4"));
-        button5.addActionListener(e -> mta.nextCommand("5"));
+    }
+
+    private void mainViewStatsAction() {
+        JButton btnViwArtist = new JButton("view specific artist");
+
+        JButton btnToMain = new JButton("exit to main menu");
+
+        add(btnViwArtist);
+        add(btnToMain);
+
+        mta.nextCommand("2");
 
     }
 
-    private void mainMenuAction() {
+    private void displayMusicList() {
+        listPanel.removeAll();
 
+        DefaultListModel<String> musicianNames = new DefaultListModel<>();
+        DefaultListModel<String> songNames = new DefaultListModel<>();
+
+
+        for (Musician m : mta.getUserML().getMusicians()) {
+            musicianNames.addElement(m.getName());
+            //for (Song s : userML.getMusicians()) {
+            //    songNames.addElement(s.getName());
+            //}
+        }
+
+        JList<String> musicians = new JList<>(musicianNames);
+        musicians.setBounds(200, 200, 12, 12);
+        listPanel.add(new JScrollPane(musicians), BorderLayout.CENTER);
+        revalidate();
+        repaint();
     }
 
 }

@@ -28,7 +28,6 @@ public class MusicTrackerApp {
     public MusicTrackerApp() throws FileNotFoundException {
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
-        new DisplayMusicLibrary(this);
         runMusicTracker();
     }
 
@@ -58,20 +57,14 @@ public class MusicTrackerApp {
     // EFFECTS: initializes a library of music that the user has already heard,
     //          along with the user's name
     private void init() {
-
         List<Musician> artists = new ArrayList<>();
-
-//        List<Song> kenSongs = new ArrayList<>();
-//        Song mt = new Song("Money Trees", 6.27, 6);
-//        kenSongs.add(mt);
-//        Musician kendrick = new Musician("Kendrick Lamar", kenSongs);
-//        artists = new ArrayList<>();
-//        artists.add(kendrick);
 
         userML = new MusicLibrary(artists);
 
         input = new Scanner(System.in);
         input.useDelimiter("\n");
+
+        new DisplayMusicLibrary(this, userML);
     }
 
     // EFFECTS: displays the initial menu of program options
@@ -146,5 +139,9 @@ public class MusicTrackerApp {
         }
     }
 
+
+    public MusicLibrary getUserML() {
+        return userML;
+    }
 
 }
