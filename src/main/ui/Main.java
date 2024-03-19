@@ -1,8 +1,6 @@
 package ui;
 
-import ui.GUI.MusicTrackerGUI;
-
-import java.io.FileNotFoundException;
+import ui.gui.MusicTrackerGUI;
 
 public class Main {
     public static void main(String[] args) {

@@ -1,15 +1,12 @@
-package ui.GUI;
+package ui.gui;
 
 import model.MusicLibrary;
-import persistance.JsonWriter;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
-import java.io.FileNotFoundException;
 
-public class AddMusic extends ButtonOperations {
-
-    public  AddMusic(MusicLibrary userML, JTextArea textArea) {
+public class ViewStatsGUI extends ButtonOperations {
+    public  ViewStatsGUI(MusicLibrary userML, JTextArea textArea) {
         super(userML, textArea);
     }
 

@@ -22,8 +22,7 @@ public class Musician implements MusicTracking, Writable {
         this.songs = songs;
     }
 
-    // REQUIRES: songsHeard should be non-empty and song should
-    //           not already exist in songsHeard
+    // REQUIRES: song should not already exist in songsHeard
     // MODIFIES: this
     // EFFECTS: adds a song to the songs listened to by user
     public void addSong(Song song) {

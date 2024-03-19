@@ -1,25 +1,21 @@
-package ui.GUI;
+package ui.gui;
 
 import model.MusicLibrary;
-import persistance.JsonReader;
 import persistance.JsonWriter;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 
 public class SaveMusicLibrary extends ButtonOperations {
 
-    private String jsonStore;
+    private static final String JSON_STORE = "./data/musicLibrary.json";
 
-    private JsonWriter jsonWriter;
+    private final JsonWriter jsonWriter;
 
-    public  SaveMusicLibrary(MusicLibrary userML, JTextArea textArea,  String jsonStore) {
+    public  SaveMusicLibrary(MusicLibrary userML, JTextArea textArea) {
         super(userML, textArea);
-        this.jsonStore = jsonStore;
-        jsonWriter = new JsonWriter(jsonStore);
+        jsonWriter = new JsonWriter(JSON_STORE);
     }
 
     @Override
@@ -29,9 +25,11 @@ public class SaveMusicLibrary extends ButtonOperations {
             jsonWriter.open();
             jsonWriter.write(userML);
             jsonWriter.close();
-            textArea.append("Saved current Music Library to: " + jsonStore + "\n");
+            textArea.append("Saved current Music Library to: " + JSON_STORE + "\n");
         } catch (FileNotFoundException fe) {
-            textArea.append("Unable to write to file: " + jsonStore + "\n");
+            textArea.append("Unable to write to file: " + JSON_STORE + "\n");
         }
     }
+
+
 }
