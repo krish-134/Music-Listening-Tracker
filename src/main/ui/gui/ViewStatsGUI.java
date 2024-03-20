@@ -6,8 +6,11 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 
 public class ViewStatsGUI extends ButtonOperations {
+    private JPanel graphPanel;
+
     public  ViewStatsGUI(MusicLibrary userML, JTextArea textArea) {
         super(userML, textArea);
+        this.graphPanel = graphPanel;
     }
 
     @Override
@@ -15,4 +18,9 @@ public class ViewStatsGUI extends ButtonOperations {
     public void actionPerformed(ActionEvent e) {
 
     }
+
+   // private void displayBarGraph() {
+    // DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+   // }
+
 }

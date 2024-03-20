@@ -26,7 +26,7 @@ public class LoadMusicLibrary extends ButtonOperations {
             super.updateUserML(musicLibraryFromFile);
             //textArea.append("Loaded music library from " + JSON_STORE + "\n");
             textArea.setText("Loaded music library from " + JSON_STORE + "\n");
-            super.updateTextAreaWithMusicians();
+            //super.updateTextAreaWithMusicians();
         } catch (IOException ie) {
             textArea.append("Unable to read from file: " + JSON_STORE + "\n");
         }

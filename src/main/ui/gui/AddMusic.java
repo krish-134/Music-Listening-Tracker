@@ -7,12 +7,22 @@ import model.Song;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class AddMusic extends ButtonOperations {
 
+
+    private MusicLibrary userML;
+
+    private JTextArea textArea;
+
     public  AddMusic(MusicLibrary userML, JTextArea textArea) {
+        //super(userML, textArea);
         super(userML, textArea);
+        this.userML = userML;
+        this.textArea = textArea;
     }
 
     @Override
@@ -31,7 +41,7 @@ public class AddMusic extends ButtonOperations {
             addNewMusicianToLibrary(artistName, songName, songLength, timesPlayed);
         }
 
-        super.updateTextAreaWithMusicians();
+        updateTextAreaWithMusicians();
     }
 
     private void addSongToExistingMusician(String artistName, String songName, double songLength, int timesPlayed) {
@@ -49,5 +59,23 @@ public class AddMusic extends ButtonOperations {
         userML.addMusician(new Musician(artistName, songList));
     }
 
+    // EFFECTS: displays the current musicians in library to screen
+    protected void updateTextAreaWithMusicians() {
+        //textArea.setText("");
+        Set<String> displayedMusicians = new HashSet<>();
+        String[] textLines = textArea.getText().split("\n");
+
+        for (String artist : textLines) {
+            displayedMusicians.add(artist.trim());
+        }
+
+        for (Musician m : userML.getMusicians()) {
+            String artistName = m.getName();
+            if (!displayedMusicians.contains(artistName)) {
+
+                textArea.append(artistName + "\n");
+            }
+        }
+    }
 
 }
