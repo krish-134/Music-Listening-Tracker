@@ -52,6 +52,7 @@ public class MusicTrackerGUI extends JFrame {
         pack();
 
         setLocationRelativeTo(null);
+        setResizable(false);
         setVisible(true);
     }
 
@@ -62,7 +63,7 @@ public class MusicTrackerGUI extends JFrame {
         topPanel.add(addBtn);
 
         JButton statsBtn = new JButton("view statistics");
-        statsBtn.addActionListener(new ViewStatsGUI(userML, textArea));
+        statsBtn.addActionListener(e -> new ViewStatsGUI(userML, textArea));
         topPanel.add(statsBtn);
 
         add(topPanel,BorderLayout.NORTH);

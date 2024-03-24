@@ -63,8 +63,6 @@ public class MusicTrackerApp {
 
         input = new Scanner(System.in);
         input.useDelimiter("\n");
-
-        new DisplayMusicLibrary(this, userML);
     }
 
     // EFFECTS: displays the initial menu of program options
