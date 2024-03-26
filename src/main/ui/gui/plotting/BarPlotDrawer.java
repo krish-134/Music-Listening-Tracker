@@ -1,14 +1,14 @@
-package ui.gui.graphs;
-
-import model.Musician;
+package ui.gui.plotting;
 
 import java.awt.*;
-import java.util.HashMap;
 import java.util.Map;
 
+// This class draws the Bar PLot
 public class BarPlotDrawer {
 
+    // EFFECTS: draws out the bar plot with the appropriate units for y and x-axis
     public static void drawBarPlot(Graphics g, Map<String, Integer> musicData) {
+
         int barWidth = 50;
         int spacing = 10;
         int x = 50;
@@ -41,10 +41,5 @@ public class BarPlotDrawer {
         g.drawLine(30, baseY, x + barWidth + spacing, baseY);
 
     }
-
-
-
-
-
 
 }

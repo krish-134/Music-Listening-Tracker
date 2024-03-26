@@ -2,26 +2,25 @@ package ui.gui;
 
 import model.MusicLibrary;
 import model.Musician;
-import model.Song;
-import ui.gui.graphs.BarPlot;
-import ui.gui.graphs.BarPlotDrawer;
+import ui.gui.plotting.BarPlot;
+import ui.gui.plotting.BarPlotDrawer;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.util.HashMap;
 import java.util.Map;
 
+// Class for dealing with viewing statistics from music library
 public class ViewStatsGUI extends JFrame {
     private final MusicLibrary userML;
-    private final JTextArea textArea;
 
-    public  ViewStatsGUI(MusicLibrary userML, JTextArea textArea) {
+    // EFFECTS: sets the music library and initiates the GUI for viewing stats
+    public  ViewStatsGUI(MusicLibrary userML) {
         this.userML = userML;
-        this.textArea = textArea;
         initStatsGUI();
     }
 
+    // EFFECTS: create GUI frame for statistics window
     private void initStatsGUI() {
         setTitle("Listening Statistics");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -35,7 +34,7 @@ public class ViewStatsGUI extends JFrame {
         setVisible(true);
     }
 
-
+    // EFFECTS: return the chart that shows music library stats
     private JPanel makeChartPanel() {
         JPanel panel = new JPanel() {
             @Override
@@ -52,6 +51,7 @@ public class ViewStatsGUI extends JFrame {
         return panel;
     }
 
+    // EFFECTS: searches for a musician in the library
     private void searchMusician() {
         String musicianName = JOptionPane.showInputDialog("Enter Musician Name:");
         Musician musician = userML.findMusician(musicianName);
@@ -63,11 +63,13 @@ public class ViewStatsGUI extends JFrame {
         }
     }
 
+    // EFFECTS: shows a plot for a particular musician and their songs
     private void showMusicianStats(Musician musician) {
         BarPlot plotFrame = new BarPlot(musician.getName() + " Listening Statistics", musician);
         plotFrame.setVisible(true);
     }
 
+    // EFFECTS: draws a bar plot with the musicians in the library
     private void drawBarPlot(Graphics g) {
         Map<String, Integer> musicianTimes = new HashMap<>();
 
