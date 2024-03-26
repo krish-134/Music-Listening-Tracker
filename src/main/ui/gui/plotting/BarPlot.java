@@ -14,7 +14,7 @@ public class BarPlot extends JFrame {
     // EFFECTS: creates a panel for bar plot that has a title and related musician
     public BarPlot(String title, Musician musician) {
         setTitle(title);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout());
 
         JPanel musicianPanel = new JPanel() {
