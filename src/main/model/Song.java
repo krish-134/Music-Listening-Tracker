@@ -14,16 +14,27 @@ public class Song implements MusicTracking, Writable {
     // REQUIRES: name is non-empty string, songLength > 0 and timesPlayed > 0
     // EFFECTS: creates a song with a name, the length, the amount of times the song has been played,
     //          and whether the song is a favourite
-    public Song(String name, double songLength, int timesPlayed) {
+    public Song(String name, double songLength, int timesPlayed) throws IllegalArgumentException {
+        if (name == null || name.isEmpty()) {
+            throw new IllegalArgumentException("Song name cannot be empty");
+        }
+        if (songLength <= 0) {
+            throw new IllegalArgumentException("Song length cannot be less than or equal to zero");
+        }
+        if (timesPlayed <= 0) {
+            throw new IllegalArgumentException("Times played cannot be less than or equal to zero");
+        }
         this.name = name;
         this.songLength = songLength;
         this.timesPlayed = timesPlayed;
     }
 
-    // REQUIRES: t >= 0
     // MODIFIES: this
     // EFFECTS: adds amount of times the song has been played
-    public void addTimesPlayed(int t) {
+    public void addTimesPlayed(int t) throws IllegalArgumentException {
+        if (t <= 0) {
+            throw new IllegalArgumentException("Cannot add number less than or equal to zero on to times played");
+        }
         timesPlayed += t;
     }
 

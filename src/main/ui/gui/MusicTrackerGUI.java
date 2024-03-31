@@ -82,20 +82,24 @@ public class MusicTrackerGUI extends JFrame {
     // EFFECTS: deal with the user cases of adding new music to the library when
     //          the add music button is clicked in GUI
     private void initAddMusicButton() {
+        try {
+            String artistName = JOptionPane.showInputDialog("Enter musician name: ");
+            String songName = JOptionPane.showInputDialog("Enter the song name: ");
+            double songLength = Double.parseDouble(JOptionPane.showInputDialog("Enter the length of the song: "));
+            int timesPlayed = Integer.parseInt(JOptionPane.showInputDialog("Enter the number of times "
+                    + "you played the song: "));
 
-        String artistName = JOptionPane.showInputDialog("Enter musician name: ");
-        String songName = JOptionPane.showInputDialog("Enter the song name: ");
-        double songLength = Double.parseDouble(JOptionPane.showInputDialog("Enter the length of the song: "));
-        int timesPlayed = Integer.parseInt(JOptionPane.showInputDialog("Enter the number of times "
-                + "you played the song: "));
+            if (userML.isMusicianFound(artistName)) {
+                addSongToExistingMusician(artistName, songName, songLength, timesPlayed);
+            } else {
+                addNewMusicianToLibrary(artistName, songName, songLength, timesPlayed);
+            }
 
-        if (userML.isMusicianFound(artistName)) {
-            addSongToExistingMusician(artistName, songName, songLength, timesPlayed);
-        } else {
-            addNewMusicianToLibrary(artistName, songName, songLength, timesPlayed);
+            updateTextAreaWithMusicians();
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage(),
+                    "Input error", JOptionPane.ERROR_MESSAGE);
         }
-
-        updateTextAreaWithMusicians();
     }
 
     // MODIFIES: this

@@ -32,13 +32,29 @@ public class MusicianTest {
 
     @Test
     void testConstructor() {
-        assertEquals("Taylor Swift", taylor.getName());
-        assertEquals(tSongs, taylor.getSongs());
-        assertEquals(3, taylor.getSongs().size());
-        assertEquals(ah, taylor.getSongs().get(0));
-        assertEquals(bs, taylor.getSongs().get(1));
-        assertEquals(ls, taylor.getSongs().get(2));
-        assertEquals(77.48, taylor.getTotalTimeListened());
+        try {
+            assertEquals("Taylor Swift", taylor.getName());
+            assertEquals(tSongs, taylor.getSongs());
+            assertEquals(3, taylor.getSongs().size());
+            assertEquals(ah, taylor.getSongs().get(0));
+            assertEquals(bs, taylor.getSongs().get(1));
+            assertEquals(ls, taylor.getSongs().get(2));
+            assertEquals(77.48, taylor.getTotalTimeListened());
+
+        } catch (IllegalArgumentException e) {
+            fail("exception should not have been thrown");
+        }
+    }
+
+    @Test
+    void testInvalidConstructor() {
+        Musician artist;
+        try {
+            artist = new Musician("", new ArrayList<Song>());
+            fail("exception should have been thrown");
+        } catch (IllegalArgumentException e) {
+            assertEquals("Musician name cannot be empty", e.getMessage());
+        }
     }
 
     @Test
@@ -48,6 +64,12 @@ public class MusicianTest {
 
         Song red;
         red = new Song("Red", 3.43, 1);
+        taylor.addSong(red);
+
+        assertEquals(4, taylor.getSongs().size());
+        assertEquals(red, taylor.getSongs().get(3));
+        assertEquals(80.91, taylor.getTotalTimeListened());
+
         taylor.addSong(red);
 
         assertEquals(4, taylor.getSongs().size());

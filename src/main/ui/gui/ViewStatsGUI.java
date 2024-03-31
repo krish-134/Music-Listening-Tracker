@@ -53,13 +53,18 @@ public class ViewStatsGUI extends JFrame {
 
     // EFFECTS: searches for a musician in the library
     private void searchMusician() {
-        String musicianName = JOptionPane.showInputDialog("Enter Musician Name:");
-        Musician musician = userML.findMusician(musicianName);
+        try {
+            String musicianName = JOptionPane.showInputDialog("Enter Musician Name:");
+            Musician musician = userML.findMusician(musicianName);
 
-        if (musician != null) {
-            showMusicianStats(musician);
-        } else {
-            JOptionPane.showMessageDialog(this, "Musician not found");
+            if (musician != null) {
+                showMusicianStats(musician);
+            } else {
+                JOptionPane.showMessageDialog(this, "Musician not found");
+            }
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage(),
+                    "Input error", JOptionPane.ERROR_MESSAGE);
         }
     }
 

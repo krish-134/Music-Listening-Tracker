@@ -13,21 +13,26 @@ public class Musician implements MusicTracking, Writable {
     private String name;
     private List<Song> songs;
 
-    // REQUIRES: The songsHeard list should be non-empty and name should be non-empty string
     // EFFECTS: Instantiates musician with a name, the list of their songs the user
     //          listened to, and the amount of time the user listened to the musician/group
-    public Musician(String name, List<Song> songs) {
-
+    public Musician(String name, List<Song> songs) throws IllegalArgumentException {
+        if (name == null || name.isEmpty()) {
+            throw new IllegalArgumentException("Musician name cannot be empty");
+        }
         this.name = name;
         this.songs = songs;
     }
 
-    // REQUIRES: song should not already exist in songsHeard
     // MODIFIES: this
     // EFFECTS: adds a song to the songs listened to by user
-    public void addSong(Song song) {
-        songs.add(song);
-        EventLog.getInstance().logEvent(new Event("Added song: " + song.getName()));
+    public void addSong(Song song) throws IllegalArgumentException {
+        if (song == null) {
+            throw new IllegalArgumentException();
+        }
+        if (!songs.contains(song)) {
+            songs.add(song);
+            EventLog.getInstance().logEvent(new Event("Added song: " + song.getName()));
+        }
     }
 
     // EFFECTS: returns true if the given song is in songsHeard

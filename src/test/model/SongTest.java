@@ -20,6 +20,32 @@ public class SongTest {
         assertEquals(4.49, alterEgo.getSongLength());
         assertEquals(17, alterEgo.getTimesPlayed());
     }
+
+    @Test
+    void testInvalidConstructor() {
+        Song song;
+        try {
+            song = new Song("", 3.51, 12);
+            fail("exception should have been thrown");
+        } catch (IllegalArgumentException e) {
+            assertEquals("Song name cannot be empty", e.getMessage());
+        }
+
+        try {
+            song = new Song("aaa", 0, 12);
+            fail("exception should have been thrown");
+        } catch (IllegalArgumentException e) {
+            assertEquals("Song length cannot be less than or equal to zero", e.getMessage());
+        }
+
+        try {
+            song = new Song("aaa", 2, -1);
+            fail("exception should have been thrown");
+        } catch (IllegalArgumentException e) {
+            assertEquals("Times played cannot be less than or equal to zero", e.getMessage());
+        }
+    }
+
     @Test
     void testAddTimesPlayed() {
         alterEgo.addTimesPlayed(1);
