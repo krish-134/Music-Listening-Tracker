@@ -27,6 +27,7 @@ public class Musician implements MusicTracking, Writable {
     // EFFECTS: adds a song to the songs listened to by user
     public void addSong(Song song) {
         songs.add(song);
+        EventLog.getInstance().logEvent(new Event("Added song: " + song.getName()));
     }
 
     // EFFECTS: returns true if the given song is in songsHeard

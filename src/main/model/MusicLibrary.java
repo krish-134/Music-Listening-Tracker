@@ -23,6 +23,7 @@ public class MusicLibrary implements MusicTracking, Writable {
     // EFFECTS: adds musician to list of listened musicians
     public void addMusician(Musician m) {
         musicians.add(m);
+        EventLog.getInstance().logEvent(new Event("Added musician: " + m.getName()));
     }
 
     // EFFECTS: returns true if the given musician is in musiciansHeard
