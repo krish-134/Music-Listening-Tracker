@@ -18,7 +18,7 @@ public class MusicLibrary implements MusicTracking, Writable {
         this.musicians = musicians;
     }
 
-    // REQUIRES m should not already be in musiciansHeard
+    // REQUIRES m should not already be in musicians
     // MODIFIES: this
     // EFFECTS: adds musician to list of listened musicians
     public void addMusician(Musician m) {
@@ -26,7 +26,7 @@ public class MusicLibrary implements MusicTracking, Writable {
         EventLog.getInstance().logEvent(new Event("Added musician: " + m.getName()));
     }
 
-    // EFFECTS: returns true if the given musician is in musiciansHeard
+    // EFFECTS: returns true if the given musician is in musicians
     public boolean isMusicianFound(String name) {
         for (Musician m: musicians) {
             if (name.equalsIgnoreCase(m.getName())) {
@@ -36,8 +36,8 @@ public class MusicLibrary implements MusicTracking, Writable {
         return false;
     }
 
-    // REQUIRES: m should already exist in musiciansHeard
-    // EFFECTS: returns given musician if found in musiciansHeard, otherwise
+    // REQUIRES: m should already exist in musicians
+    // EFFECTS: returns given musician if found in musicians, otherwise
     //          returns null if musician is not found
     public Musician findMusician(String name) {
         for (Musician m: musicians) {
@@ -48,30 +48,34 @@ public class MusicLibrary implements MusicTracking, Writable {
         return null;
     }
 
-    // REQUIRES: musiciansHeard should be non-empty
+    // REQUIRES: musicians should be non-empty
     // EFFECTS: returns the least played musician, assuming that no two musicians
     //          have been listened to by the exact same amount of time
     public Musician getMostHeardMusician() {
-        Musician mostHeard = musicians.get(0);
-        for (Musician m: musicians) {
-            if (m.getTotalTimeListened() > mostHeard.getTotalTimeListened()) {
-                mostHeard = m;
-            }
-        }
-        return mostHeard;
+        return getMostOrLeastHeard(true);
     }
 
-    // REQUIRES: musiciansHeard should be non-empty
+
+    // REQUIRES: musicians should be non-empty
     // EFFECTS: returns the least played musician, assuming that no two musicians
     //          have been listened to by the exact same amount of time
     public Musician getLeastHeardMusician() {
-        Musician leastHeard = musicians.get(0);
+        return getMostOrLeastHeard(false);
+    }
+
+    // REQUIRES: musicians should be non-empty
+    // EFFECTS: returns either least listened to or most listened to musician based on mostHeard parameter
+    public Musician getMostOrLeastHeard(boolean mostHeard) {
+        Musician musicianHeard = musicians.get(0);
         for (Musician m: musicians) {
-            if (m.getTotalTimeListened() < leastHeard.getTotalTimeListened()) {
-                leastHeard = m;
+            double totalTime = m.getTotalTimeListened();
+            double prevTotalTime = musicianHeard.getTotalTimeListened();
+            if ((mostHeard && totalTime > prevTotalTime)
+                    || (!mostHeard && totalTime < prevTotalTime)) {
+                musicianHeard = m;
             }
         }
-        return leastHeard;
+        return musicianHeard;
     }
 
     // EFFECTS: return total time spent listening to all musicians

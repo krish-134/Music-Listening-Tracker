@@ -31,11 +31,12 @@ public class Musician implements MusicTracking, Writable {
         }
         if (!songs.contains(song)) {
             songs.add(song);
-            EventLog.getInstance().logEvent(new Event("Added song: " + song.getName()));
+            EventLog.getInstance().logEvent(new Event("Added song: " + song.getName()
+                    + " to musician: " + name));
         }
     }
 
-    // EFFECTS: returns true if the given song is in songsHeard
+    // EFFECTS: returns true if the given song is in songs
     public boolean isSongFound(String songTitle) {
         for (Song s: songs) {
             if (songTitle.equalsIgnoreCase(s.getName())) {
@@ -45,7 +46,7 @@ public class Musician implements MusicTracking, Writable {
         return false;
     }
 
-    // EFFECTS: returns given song if found in songsHeard, otherwise
+    // EFFECTS: returns given song if found in songs, otherwise
     //          returns null if song is not found
     public Song findSong(String songTitle) {
         for (Song s: songs) {
@@ -57,7 +58,7 @@ public class Musician implements MusicTracking, Writable {
     }
 
     // EFFECTS: returns time listened to given song, otherwise 0 if
-    //          song title does not appear in songsHeard
+    //          song title does not appear in songs
     public double getTimeListenedSong(String songTitle) {
         Song song = findSong(songTitle);
         if (findSong(songTitle) != null) {
@@ -66,7 +67,7 @@ public class Musician implements MusicTracking, Writable {
         return 0;
     }
 
-    // REQUIRES: songsHeard should be non-empty
+    // REQUIRES: songs should be non-empty
     // EFFECTS: returns a sum of the time spent listening to each song
     @Override
     public double getTotalTimeListened() {
@@ -77,30 +78,33 @@ public class Musician implements MusicTracking, Writable {
         return Math.round(sum * 100.0) / 100.0;
     }
 
-    // REQUIRES: songsHeard should be non-empty
+    // REQUIRES: songs should be non-empty
     // EFFECTS: returns the least played song, assuming that no two songs
     //          have been listened to by the exact same amount of time
     public Song getMostHeardSong() {
-        Song mostHeard = songs.get(0);
-        for (Song s: songs) {
-            if (s.getTotalTimeListened() > mostHeard.getTotalTimeListened()) {
-                mostHeard = s;
-            }
-        }
-        return mostHeard;
+        return getMostOrLeastHeard(true);
     }
 
     // REQUIRES: songsHeard should be non-empty
     // EFFECTS: returns the least played song, assuming that no two songs
     //          have been listened to by the exact same amount of time
     public Song getLeastHeardSong() {
-        Song leastHeard = songs.get(0);
+        return getMostOrLeastHeard(false);
+    }
+
+    // REQUIRES: songs should be non-empty
+    // EFFECTS: returns either least listened to or most listened to song based on mostHeard parameter
+    public Song getMostOrLeastHeard(boolean mostHeard) {
+        Song songHeard = songs.get(0);
         for (Song s: songs) {
-            if (s.getTotalTimeListened() < leastHeard.getTotalTimeListened()) {
-                leastHeard = s;
+            double totalTime = s.getTotalTimeListened();
+            double prevTotalTime = songHeard.getTotalTimeListened();
+            if ((mostHeard && totalTime > prevTotalTime)
+                    || (!mostHeard && totalTime < prevTotalTime)) {
+                songHeard = s;
             }
         }
-        return leastHeard;
+        return songHeard;
     }
 
     public List<Song> getSongs() {

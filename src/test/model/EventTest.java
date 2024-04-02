@@ -7,6 +7,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 // This class was taken from this UBC CPSC 210 Example Project: https://github.students.cs.ubc.ca/CPSC210/AlarmSystem
 
@@ -33,6 +34,12 @@ public class EventTest {
     @Test
     public void testToString() {
         assertEquals(d.toString() + "\n" + "Musician added: Beyonce", e.toString());
+    }
+
+    @Test
+    public void testEquals() {
+        assertFalse(e.equals(null));
+        assertFalse(e.equals(3));
     }
 }
 

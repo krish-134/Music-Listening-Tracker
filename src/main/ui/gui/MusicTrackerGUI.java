@@ -1,5 +1,7 @@
 package ui.gui;
 
+import model.Event;
+import model.EventLog;
 import model.MusicLibrary;
 import model.Musician;
 import model.Song;
@@ -53,6 +55,36 @@ public class MusicTrackerGUI extends JFrame {
         setResizable(false);
         setVisible(true);
     }
+
+//    @Override
+//    // MODIFIES: this
+//    // EFFECTS: close JFrame and print EventLog to console
+//    public void setDefaultCloseOperation(int operation) {
+//        int defaultCloseOperation = HIDE_ON_CLOSE;
+//        for (Event e : EventLog.getInstance()) {
+//            System.out.println(e.toString());
+//        }
+//        if (operation != DO_NOTHING_ON_CLOSE
+//                && operation != HIDE_ON_CLOSE
+//                && operation != DISPOSE_ON_CLOSE
+//                && operation != EXIT_ON_CLOSE) {
+//            throw new IllegalArgumentException("defaultCloseOperation must be"
+//                    + " one of: DO_NOTHING_ON_CLOSE, HIDE_ON_CLOSE,"
+//                    + " DISPOSE_ON_CLOSE, or EXIT_ON_CLOSE");
+//        }
+//
+//        if (operation == EXIT_ON_CLOSE) {
+//            SecurityManager security = System.getSecurityManager();
+//            if (security != null) {
+//                security.checkExit(0);
+//            }
+//        }
+//        if (defaultCloseOperation != operation) {
+//            int oldValue = defaultCloseOperation;
+//            defaultCloseOperation = operation;
+//            firePropertyChange("defaultCloseOperation", oldValue, operation);
+//        }
+//    }
 
     // EFFECTS: returns a text area
     private JScrollPane createTextArea() {
