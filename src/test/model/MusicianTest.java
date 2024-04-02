@@ -76,6 +76,13 @@ public class MusicianTest {
         assertEquals(red, taylor.getSongs().get(3));
         assertEquals(80.91, taylor.getTotalTimeListened());
 
+        try {
+            taylor.addSong(null);
+            fail("Should have thrown exception");
+        } catch (IllegalArgumentException e) {
+            // expected
+        }
+
     }
 
     @Test

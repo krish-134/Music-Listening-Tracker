@@ -7,8 +7,8 @@ import persistance.Writable;
 // with a given song
 public class Song implements MusicTracking, Writable {
 
-    private String name;
-    private double songLength;
+    private final String name;
+    private final double songLength;
     private int timesPlayed;
 
     // REQUIRES: name is non-empty string, songLength > 0 and timesPlayed > 0
@@ -32,8 +32,8 @@ public class Song implements MusicTracking, Writable {
     // MODIFIES: this
     // EFFECTS: adds amount of times the song has been played
     public void addTimesPlayed(int t) throws IllegalArgumentException {
-        if (t <= 0) {
-            throw new IllegalArgumentException("Cannot add number less than or equal to zero on to times played");
+        if (t < 0) {
+            throw new IllegalArgumentException("Cannot add " + t + " on to times played");
         }
         timesPlayed += t;
     }

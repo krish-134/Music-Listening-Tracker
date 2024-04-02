@@ -6,8 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Calendar;
 import java.util.Date;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 // This class was taken from this UBC CPSC 210 Example Project: https://github.students.cs.ubc.ca/CPSC210/AlarmSystem
 
@@ -40,6 +39,14 @@ public class EventTest {
     public void testEquals() {
         assertFalse(e.equals(null));
         assertFalse(e.equals(3));
+    }
+
+    @Test
+    public void testHashCode() {
+        Event e1 = new Event("Musician added: Beyonce");   // (1)
+        Event e2 = new Event("Musician added: Beyonce");
+        assertTrue(e1.hashCode() == e2.hashCode());
+        assertTrue(e1.equals(e2) && e2.equals(e1));
     }
 }
 

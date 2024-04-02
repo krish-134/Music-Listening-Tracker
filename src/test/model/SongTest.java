@@ -52,6 +52,14 @@ public class SongTest {
         assertEquals(18, alterEgo.getTimesPlayed());
         alterEgo.addTimesPlayed(5);
         assertEquals(23, alterEgo.getTimesPlayed());
+        alterEgo.addTimesPlayed(0);
+        assertEquals(23, alterEgo.getTimesPlayed());
+        try {
+            alterEgo.addTimesPlayed(-5);
+            fail("Should have thrown exception");
+        } catch (IllegalArgumentException e) {
+            assertEquals("Cannot add -5 on to times played", e.getMessage());
+        }
     }
 
     @Test
