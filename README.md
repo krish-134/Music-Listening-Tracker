@@ -46,3 +46,16 @@ Tue Apr 02 19:36:08 PDT 2024 \
 Added song, "Nangs", to musician: Tame Impala \
 Tue Apr 02 19:36:22 PDT 2024 \
 Played song, "The Recipe", 3 more times. 
+
+
+# Phase 4: Task 3
+
+Upon looking at my UML diagram, I don't think that it is so awful to understand, but there is definitely room to 
+the design of the application. I think a notable feature that I would change about my program's implementation 
+altogether is that instead of using array lists, I would use a some type of Map data structure (like HashMap). 
+The reason for this is that right now, a lot of iterating and searching needs to be done if there is a large list
+of musicians in the music library with lots songs (performance could potentially be slow). I think that if I were 
+to use a HashMap, I could make each musician's name the key in the map, and then the list of songs would be the
+corresponding value. This way, I can potentially make the program's execution more efficient, and my 
+implementation for finding a particular musician's song would be more readable and I would be able to keep most
+if not all of my functionality from beforehand with slightly modified implementation.
