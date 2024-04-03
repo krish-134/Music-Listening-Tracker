@@ -36,6 +36,7 @@ public class Song implements MusicTracking, Writable {
             throw new IllegalArgumentException("Cannot add " + t + " on to times played");
         }
         timesPlayed += t;
+        EventLog.getInstance().logEvent(new Event("Played song, \"" + name + "\", " + t + " more times."));
     }
 
     // REQUIRES: songLength > 0 and timesPlayed > 0

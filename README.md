@@ -37,3 +37,12 @@ display a plot of a particular musician in the library that shows their songs
 - Save the state of the application by clicking the 'save current library' button in the main menu
 - Reload the state of the application by clicking the 'load library' button from the main menu
 
+# Phase 4: Task 2
+Tue Apr 02 19:35:20 PDT 2024 \
+Added musician: Kendrick Lamar \
+Tue Apr 02 19:35:51 PDT 2024  \
+Added musician: Tame Impala \
+Tue Apr 02 19:36:08 PDT 2024 \
+Added song, "Nangs", to musician: Tame Impala \
+Tue Apr 02 19:36:22 PDT 2024 \
+Played song, "The Recipe", 3 more times. 

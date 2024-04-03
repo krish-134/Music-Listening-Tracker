@@ -31,8 +31,8 @@ public class Musician implements MusicTracking, Writable {
         }
         if (!songs.contains(song)) {
             songs.add(song);
-            EventLog.getInstance().logEvent(new Event("Added song: " + song.getName()
-                    + " to musician: " + name));
+            EventLog.getInstance().logEvent(new Event("Added song, \"" + song.getName()
+                    + "\", to musician: " + name));
         }
     }
 

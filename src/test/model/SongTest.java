@@ -32,6 +32,13 @@ public class SongTest {
         }
 
         try {
+            song = new Song(null, 3.51, 12);
+            fail("exception should have been thrown");
+        } catch (IllegalArgumentException e) {
+            assertEquals("Song name cannot be empty", e.getMessage());
+        }
+
+        try {
             song = new Song("aaa", 0, 12);
             fail("exception should have been thrown");
         } catch (IllegalArgumentException e) {

@@ -55,6 +55,13 @@ public class MusicianTest {
         } catch (IllegalArgumentException e) {
             assertEquals("Musician name cannot be empty", e.getMessage());
         }
+
+        try {
+            artist = new Musician(null, new ArrayList<Song>());
+            fail("exception should have been thrown");
+        } catch (IllegalArgumentException e) {
+            assertEquals("Musician name cannot be empty", e.getMessage());
+        }
     }
 
     @Test

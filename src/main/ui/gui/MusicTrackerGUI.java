@@ -11,6 +11,8 @@ import persistance.JsonWriter;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -35,6 +37,14 @@ public class MusicTrackerGUI extends JFrame {
         userML = new MusicLibrary(artists);
         initGUI();
 
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                for (Event event : EventLog.getInstance()) {
+                    System.out.println(event.toString());
+                }
+            }
+        });
     }
 
     // MODIFIES: this
@@ -56,35 +66,6 @@ public class MusicTrackerGUI extends JFrame {
         setVisible(true);
     }
 
-//    @Override
-//    // MODIFIES: this
-//    // EFFECTS: close JFrame and print EventLog to console
-//    public void setDefaultCloseOperation(int operation) {
-//        int defaultCloseOperation = HIDE_ON_CLOSE;
-//        for (Event e : EventLog.getInstance()) {
-//            System.out.println(e.toString());
-//        }
-//        if (operation != DO_NOTHING_ON_CLOSE
-//                && operation != HIDE_ON_CLOSE
-//                && operation != DISPOSE_ON_CLOSE
-//                && operation != EXIT_ON_CLOSE) {
-//            throw new IllegalArgumentException("defaultCloseOperation must be"
-//                    + " one of: DO_NOTHING_ON_CLOSE, HIDE_ON_CLOSE,"
-//                    + " DISPOSE_ON_CLOSE, or EXIT_ON_CLOSE");
-//        }
-//
-//        if (operation == EXIT_ON_CLOSE) {
-//            SecurityManager security = System.getSecurityManager();
-//            if (security != null) {
-//                security.checkExit(0);
-//            }
-//        }
-//        if (defaultCloseOperation != operation) {
-//            int oldValue = defaultCloseOperation;
-//            defaultCloseOperation = operation;
-//            firePropertyChange("defaultCloseOperation", oldValue, operation);
-//        }
-//    }
 
     // EFFECTS: returns a text area
     private JScrollPane createTextArea() {
