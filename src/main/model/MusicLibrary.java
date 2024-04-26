@@ -1,6 +1,8 @@
 package model;
 
 
+import model.Event.Event;
+import model.Event.EventLog;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import persistance.Writable;

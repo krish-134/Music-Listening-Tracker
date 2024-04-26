@@ -1,7 +1,7 @@
 package ui.gui;
 
-import model.Event;
-import model.EventLog;
+import model.Event.Event;
+import model.Event.EventLog;
 import model.MusicLibrary;
 import model.Musician;
 import model.Song;
